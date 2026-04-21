@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlantic Ouest Logistics | Officiel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --aol-vibrant-cyan: #00f2ff;
+            --aol-silver: #f0f0f0;
+            --aol-deep-space: #000108;
+        }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; 
+            overflow-x: hidden; 
+            scroll-behavior: smooth; 
+            color: var(--aol-silver);
+            background-color: var(--aol-deep-space);
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.2)), url('fond-spatial.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* NAVIGATION */
+        header { 
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; position: fixed; width: 90%; z-index: 1000;
+            background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(15px);
+            border-bottom: 2px solid var(--aol-vibrant-cyan);
+        }
+        
+        .nav-brand { 
+            font-weight: 900; font-size: 1.1rem; color: white; 
+            text-decoration: none; text-transform: uppercase; letter-spacing: 2px; 
+            display: flex; align-items: center;
+        }
+
+        /* LOGO HAUT GAUCHE AVEC FUSION */
+        .logo-mini {
+            height: 35px;
+            margin-right: 15px;
+            mix-blend-mode: screen; 
+            filter: brightness(1.2);
+        }
+
+        /* LIGNE DE CÔTÉ (Menu haut gauche) */
+        .nav-brand::after {
+            content: "";
+            display: inline-block;
+            width: 2px;
+            height: 25px;
+            background: var(--aol-vibrant-cyan);
+            margin-left: 15px;
+            box-shadow: 0 0 10px var(--aol-vibrant-cyan);
+        }
+
+        .nav-menu { display: flex; gap: 10px; flex-wrap: wrap; }
+        .nav-link { 
+            color: #dcdcdc; text-decoration: none; font-size: 0.7rem; 
+            font-weight: 700; text-transform: uppercase; transition: 0.3s;
+            padding: 5px 10px; border-radius: 4px;
+        }
+        .nav-link:hover { color: var(--aol-vibrant-cyan); text-shadow: 0 0 10px var(--aol-vibrant-cyan); }
+
+        /* SECTION HERO */
+        .hero {
+            height: 100vh; display: flex; flex-direction: column; 
+            justify-content: center; align-items: center; text-align: center;
+        }
+
+        /* LOGO CENTRAL AVEC FUSION */
+        .logo-central {
+            width: 220px;
+            margin-bottom: 20px;
+            mix-blend-mode: screen; 
+            filter: drop-shadow(0 0 20px var(--aol-vibrant-cyan));
+        }
+        
+        h1 { font-size: 4.5rem; font-weight: 900; margin: 0; text-transform: uppercase; letter-spacing: -2px; }
+        h1 span { color: var(--aol-vibrant-cyan); text-shadow: 0 0 30px var(--aol-vibrant-cyan); }
+
+        /* LIGNE AU DESSUS DE LA PRÉSENTATION */
+        .separator-line {
+            width: 120px;
+            height: 4px;
+            background: var(--aol-vibrant-cyan);
+            margin: 30px 0 15px 0;
+            border-radius: 2px;
+            box-shadow: 0 0 15px var(--aol-vibrant-cyan);
+        }
+
+        .bio-container {
+            max-width: 700px; line-height: 1.8;
+            background: rgba(0, 0, 0, 0.85); padding: 30px; border-radius: 12px;
+            border-left: 5px solid var(--aol-vibrant-cyan);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-rejoindre { 
+            display: inline-block; background: var(--aol-vibrant-cyan); color: #000; 
+            padding: 18px 45px; border-radius: 5px; text-decoration: none; font-weight: 900; 
+            margin-top: 40px; transition: 0.3s; text-transform: uppercase;
+            box-shadow: 0 5px 20px rgba(0, 242, 255, 0.4);
+        }
+        .btn-rejoindre:hover { background: white; transform: scale(1.05); box-shadow: 0 0 30px white; }
+
+        /* GALERIE */
+        .galerie-sec { padding: 100px 5%; background: rgba(0,0,0,0.8); border-top: 1px solid rgba(255,255,255,0.1); }
+        .galerie-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;
+        }
+        .img-item { border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); transition: 0.4s; }
+        .img-item img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; transition: 0.4s; }
+        .img-item:hover { border-color: var(--aol-vibrant-cyan); transform: translateY(-5px); }
+        .img-item:hover img { transform: scale(1.05); }
+
+        footer { text-align: center; padding: 50px; opacity: 0.6; font-size: 0.8rem; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="#" class="nav-brand">
+        <img src="logo.png" alt="" class="logo-mini">
+        ATLANTIC OUEST LOGISTICS
+    </a>
+    <nav class="nav-menu">
+        <a href="https://www.facebook.com/profile.php?id=61572367872004" target="_blank" class="nav-link">Facebook</a>
+        <a href="https://truckersmp.com/vtc/88622" target="_blank" class="nav-link">TruckersMP</a>
+        <a href="https://trucksbook.eu/company/223011" target="_blank" class="nav-link">TrucksBook</a>
+        <a href="#galerie" class="nav-link">Galerie</a>
+        <a href="https://discord.gg/zpwnF78MSr" target="_blank" class="nav-link">Discord</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <img src="logo.png" alt="Logo" class="logo-central">
+    
+    <h1>ATLANTIC <span>OUEST</span> LOGISTICS</h1>
+    
+    <div class="separator-line"></div>
+
+    <div class="bio-container">
+        <p>L'ambition nantaise ne connaît plus de limites. <strong>Atlantic Ouest Logistics</strong> est une entreprise de transport virtuel qui mise sur l'immersion, le réalisme et la convivialité au sein de la communauté Euro Truck Simulator 2.</p>
+    </div>
+
+    <a href="https://discord.gg/zpwnF78MSr" target="_blank" class="btn-rejoindre">REJOIGNEZ-NOUS !</a>
+</section>
+
+<section id="galerie" class="galerie-sec">
+    <div class="galerie-grid">
+        <div class="img-item"><img src="galerie1.jpg"></div>
+        <div class="img-item"><img src="galerie2.jpg"></div>
+        <div class="img-item"><img src="galerie3.jpg"></div>
+        <div class="img-item"><img src="galerie4.jpg"></div>
+        <div class="img-item"><img src="galerie5.jpg"></div>
+        <div class="img-item"><img src="galerie6.jpg"></div>
+    </div>
+</section>
+
+<footer>ATLANTIC OUEST LOGISTICS © 2026</footer>
+
+</body>
+</html>
