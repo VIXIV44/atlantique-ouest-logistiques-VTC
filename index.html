@@ -172,7 +172,24 @@
 
 <script src="https://cdn.jsdelivr.net/npm/luminous-lightbox@2.3.2/dist/Luminous.min.js"></script>
 <script>
-    new LuminousGallery(document.querySelectorAll(".zoom"));
+    new LuminousGallery(document.querySelectorAll(".zoom"), {}, {
+        arrowNavigation: true
+    });
+    
+    // Fermeture automatique en cliquant sur l'image ou le fond
+    document.querySelectorAll('.zoom').forEach(function(element) {
+        element.addEventListener('click', function() {
+            setTimeout(function() {
+                var lightbox = document.querySelector('.lum-lightbox');
+                if (lightbox) {
+                    lightbox.onclick = function() {
+                        var closeBtn = document.querySelector('.lum-close-button');
+                        if (closeBtn) closeBtn.click();
+                    };
+                }
+            }, 100);
+        });
+    });
 </script>
 
 </body>
