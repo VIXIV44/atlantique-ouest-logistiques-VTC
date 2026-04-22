@@ -119,6 +119,9 @@
         .img-item:hover { border-color: var(--aol-vibrant-cyan); transform: translateY(-5px); }
         .img-item:hover img { transform: scale(1.05); }
 
+        /* Ajustement Luminous pour être sûr que la croix soit visible */
+        .lum-close-button { z-index: 2000 !important; }
+
         footer { text-align: center; padding: 50px; opacity: 0.6; font-size: 0.8rem; letter-spacing: 2px; }
     </style>
 </head>
@@ -172,24 +175,21 @@
 
 <script src="https://cdn.jsdelivr.net/npm/luminous-lightbox@2.3.2/dist/Luminous.min.js"></script>
 <script>
+    // 1. On initialise la galerie
     new LuminousGallery(document.querySelectorAll(".zoom"), {}, {
         arrowNavigation: true
     });
     
-    // Fermeture automatique en cliquant sur l'image ou le fond
-    document.querySelectorAll('.zoom').forEach(function(element) {
-        element.addEventListener('click', function() {
-            setTimeout(function() {
-                var lightbox = document.querySelector('.lum-lightbox');
-                if (lightbox) {
-                    lightbox.onclick = function() {
-                        var closeBtn = document.querySelector('.lum-close-button');
-                        if (closeBtn) closeBtn.click();
-                    };
-                }
-            }, 100);
-        });
-    });
+    // 2. On ajoute un événement "Clic" sur toute la page
+    document.addEventListener('click', function (e) {
+        // Si l'image en grand est ouverte (lum-lightbox existe)
+        const lightbox = document.querySelector('.lum-lightbox');
+        if (lightbox) {
+            // Si on clique n'importe où quand c'est ouvert, on ferme !
+            const closeBtn = document.querySelector('.lum-close-button');
+            if (closeBtn) closeBtn.click();
+        }
+    }, true);
 </script>
 
 </body>
