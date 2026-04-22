@@ -6,10 +6,8 @@
     <title>Atlantic Ouest Logistics | Officiel</title>
 
     <link rel="icon" type="image/png" href="logo.png">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/luminous-lightbox@2.3.2/dist/luminous-basic.min.css">
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
+    
     <style>
         :root { 
             --aol-vibrant-cyan: #00f2ff;
@@ -19,15 +17,10 @@
         
         body { 
             font-family: 'Inter', sans-serif; 
-            margin: 0; 
-            overflow-x: hidden; 
-            scroll-behavior: smooth; 
-            color: var(--aol-silver);
-            background-color: var(--aol-deep-space);
+            margin: 0; overflow-x: hidden; scroll-behavior: smooth; 
+            color: var(--aol-silver); background-color: var(--aol-deep-space);
             background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.2)), url('fond-spatial.jpg');
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
+            background-attachment: fixed; background-size: cover; background-position: center;
         }
 
         /* NAVIGATION */
@@ -38,159 +31,89 @@
             border-bottom: 2px solid var(--aol-vibrant-cyan);
         }
         
-        .nav-brand { 
-            font-weight: 900; font-size: 1.1rem; color: white; 
-            text-decoration: none; text-transform: uppercase; letter-spacing: 2px; 
-            display: flex; align-items: center;
-        }
+        .nav-brand { font-weight: 900; font-size: 1.1rem; color: white; text-decoration: none; text-transform: uppercase; display: flex; align-items: center; }
+        .logo-mini { height: 35px; margin-right: 15px; mix-blend-mode: screen; filter: brightness(1.2); }
 
-        .logo-mini {
-            height: 35px;
-            margin-right: 15px;
-            mix-blend-mode: screen; 
-            filter: brightness(1.2);
-        }
+        .nav-menu { display: flex; gap: 10px; }
+        .nav-link { color: #dcdcdc; text-decoration: none; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; padding: 5px 10px; }
 
-        .nav-brand::after {
-            content: "";
-            display: inline-block;
-            width: 2px;
-            height: 25px;
-            background: var(--aol-vibrant-cyan);
-            margin-left: 15px;
-            box-shadow: 0 0 10px var(--aol-vibrant-cyan);
-        }
-
-        .nav-menu { display: flex; gap: 10px; flex-wrap: wrap; }
-        .nav-link { 
-            color: #dcdcdc; text-decoration: none; font-size: 0.7rem; 
-            font-weight: 700; text-transform: uppercase; transition: 0.3s;
-            padding: 5px 10px; border-radius: 4px;
-        }
-        .nav-link:hover { color: var(--aol-vibrant-cyan); text-shadow: 0 0 10px var(--aol-vibrant-cyan); }
-
-        /* SECTION HERO */
-        .hero {
-            height: 100vh; display: flex; flex-direction: column; 
-            justify-content: center; align-items: center; text-align: center;
-        }
-
-        .logo-central {
-            width: 220px;
-            margin-bottom: 20px;
-            mix-blend-mode: screen; 
-            filter: drop-shadow(0 0 20px var(--aol-vibrant-cyan));
-        }
-        
-        h1 { font-size: 4.5rem; font-weight: 900; margin: 0; text-transform: uppercase; letter-spacing: -2px; }
+        /* HERO */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .logo-central { width: 220px; margin-bottom: 20px; mix-blend-mode: screen; filter: drop-shadow(0 0 20px var(--aol-vibrant-cyan)); }
+        h1 { font-size: 4.5rem; font-weight: 900; margin: 0; }
         h1 span { color: var(--aol-vibrant-cyan); text-shadow: 0 0 30px var(--aol-vibrant-cyan); }
 
-        .separator-line {
-            width: 120px;
-            height: 4px;
-            background: var(--aol-vibrant-cyan);
-            margin: 30px 0 15px 0;
-            border-radius: 2px;
-            box-shadow: 0 0 15px var(--aol-vibrant-cyan);
-        }
-
-        .bio-container {
-            max-width: 700px; line-height: 1.8;
-            background: rgba(0, 0, 0, 0.85); padding: 30px; border-radius: 12px;
-            border-left: 5px solid var(--aol-vibrant-cyan);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-rejoindre { 
-            display: inline-block; background: var(--aol-vibrant-cyan); color: #000; 
-            padding: 18px 45px; border-radius: 5px; text-decoration: none; font-weight: 900; 
-            margin-top: 40px; transition: 0.3s; text-transform: uppercase;
-            box-shadow: 0 5px 20px rgba(0, 242, 255, 0.4);
-        }
-        .btn-rejoindre:hover { background: white; transform: scale(1.05); box-shadow: 0 0 30px white; }
+        .bio-container { max-width: 700px; background: rgba(0, 0, 0, 0.85); padding: 30px; border-radius: 12px; border-left: 5px solid var(--aol-vibrant-cyan); }
+        .btn-rejoindre { display: inline-block; background: var(--aol-vibrant-cyan); color: #000; padding: 18px 45px; border-radius: 5px; text-decoration: none; font-weight: 900; margin-top: 40px; text-transform: uppercase; }
 
         /* GALERIE */
-        .galerie-sec { padding: 100px 5%; background: rgba(0,0,0,0.8); border-top: 1px solid rgba(255,255,255,0.1); }
-        .galerie-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;
+        .galerie-sec { padding: 100px 5%; background: rgba(0,0,0,0.8); }
+        .galerie-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .img-item img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; cursor: pointer; transition: 0.3s; border: 1px solid rgba(255,255,255,0.1); }
+        .img-item img:hover { transform: scale(1.03); border-color: var(--aol-vibrant-cyan); }
+
+        /* SYSTEME DE ZOOM (SANS JAVASCRIPT) */
+        .lightbox {
+            display: none; position: fixed; z-index: 2000; top: 0; left: 0;
+            width: 100%; height: 100%; background: rgba(0,0,0,0.9);
+            justify-content: center; align-items: center;
         }
-        .img-item { border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); transition: 0.4s; }
-        .img-item img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; transition: 0.4s; }
-        .img-item:hover { border-color: var(--aol-vibrant-cyan); transform: translateY(-5px); }
-        .img-item:hover img { transform: scale(1.05); }
+        .lightbox:target { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 80%; border: 2px solid var(--aol-vibrant-cyan); box-shadow: 0 0 50px rgba(0, 242, 255, 0.3); }
+        .close-zoom { position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-decoration: none; color: transparent; cursor: default; }
+        .close-btn { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; text-decoration: none; font-weight: bold; }
 
-        /* Ajustement Luminous pour être sûr que la croix soit visible */
-        .lum-close-button { z-index: 2000 !important; }
-
-        footer { text-align: center; padding: 50px; opacity: 0.6; font-size: 0.8rem; letter-spacing: 2px; }
+        footer { text-align: center; padding: 50px; opacity: 0.6; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
 <header>
-    <a href="#" class="nav-brand">
-        <img src="logo.png" alt="" class="logo-mini">
-        ATLANTIC OUEST LOGISTICS
-    </a>
+    <a href="#" class="nav-brand"><img src="logo.png" class="logo-mini"> ATLANTIC OUEST LOGISTICS</a>
     <nav class="nav-menu">
-        <a href="https://www.facebook.com/profile.php?id=61572367872004" target="_blank" class="nav-link">Facebook</a>
-        <a href="https://truckersmp.com/vtc/88622" target="_blank" class="nav-link">TruckersMP</a>
-        <a href="https://trucksbook.eu/company/223011" target="_blank" class="nav-link">TrucksBook</a>
         <a href="#galerie" class="nav-link">Galerie</a>
         <a href="https://discord.gg/zpwnF78MSr" target="_blank" class="nav-link">Discord</a>
     </nav>
 </header>
 
 <section class="hero">
-    <img src="logo.png" alt="Logo" class="logo-central">
-    
+    <img src="logo.png" class="logo-central">
     <h1>ATLANTIC <span>OUEST</span> LOGISTICS</h1>
-    
-    <div class="separator-line"></div>
-
     <div class="bio-container">
-        <p>L'ambition nantaise ne connaît plus de limites. <strong>Atlantic Ouest Logistics</strong> est une entreprise de transport virtuel qui mise sur l'immersion, le réalisme et la convivialité au sein de la communauté Euro Truck Simulator 2.</p>
+        <p>L'ambition nantaise ne connaît plus de limites. <strong>Atlantic Ouest Logistics</strong> mise sur l'immersion et le réalisme sur ETS2.</p>
     </div>
-
     <a href="https://discord.gg/zpwnF78MSr" target="_blank" class="btn-rejoindre">REJOIGNEZ-NOUS !</a>
 </section>
 
 <section id="galerie" class="galerie-sec">
     <div class="galerie-grid">
-        <div class="img-item"><a href="galerie1.jpg" class="zoom"><img src="galerie1.jpg"></a></div>
-        <div class="img-item"><a href="galerie2.jpg" class="zoom"><img src="galerie2.jpg"></a></div>
-        <div class="img-item"><a href="galerie3.jpg" class="zoom"><img src="galerie3.jpg"></a></div>
-        <div class="img-item"><a href="galerie4.jpg" class="zoom"><img src="galerie4.jpg"></a></div>
-        <div class="img-item"><a href="galerie5.jpg" class="zoom"><img src="galerie5.jpg"></a></div>
-        <div class="img-item"><a href="galerie6.jpg" class="zoom"><img src="galerie6.jpg"></a></div>
-        <div class="img-item"><a href="galerie7.jpg" class="zoom"><img src="galerie7.jpg"></a></div>
-        <div class="img-item"><a href="galerie8.jpg" class="zoom"><img src="galerie8.jpg"></a></div>
-        <div class="img-item"><a href="galerie9.png" class="zoom"><img src="galerie9.png"></a></div>
-        <div class="img-item"><a href="galerie10.png" class="zoom"><img src="galerie10.png"></a></div>
-        <div class="img-item"><a href="galerie11.png" class="zoom"><img src="galerie11.png"></a></div>
+        <div class="img-item"><a href="#img1"><img src="galerie1.jpg"></a></div>
+        <div class="img-item"><a href="#img2"><img src="galerie2.jpg"></a></div>
+        <div class="img-item"><a href="#img3"><img src="galerie3.jpg"></a></div>
+        <div class="img-item"><a href="#img4"><img src="galerie4.jpg"></a></div>
+        <div class="img-item"><a href="#img5"><img src="galerie5.jpg"></a></div>
+        <div class="img-item"><a href="#img6"><img src="galerie6.jpg"></a></div>
+        <div class="img-item"><a href="#img7"><img src="galerie7.jpg"></a></div>
+        <div class="img-item"><a href="#img8"><img src="galerie8.jpg"></a></div>
+        <div class="img-item"><a href="#img9"><img src="galerie9.png"></a></div>
+        <div class="img-item"><a href="#img10"><img src="galerie10.png"></a></div>
+        <div class="img-item"><a href="#img11"><img src="galerie11.png"></a></div>
     </div>
 </section>
 
-<footer>ATLANTIC OUEST LOGISTICS © 2026</footer>
+<div id="img1" class="lightbox"><a href="#galerie" class="close-zoom"></a><img src="galerie1.jpg"><a href="#galerie" class="close-btn">&times;</a></div>
+<div id="img2" class="lightbox"><a href="#galerie" class="close-zoom"></a><img src="galerie2.jpg"><a href="#galerie" class="close-btn">&times;</a></div>
+<div id="img3" class="lightbox"><a href="#galerie" class="close-zoom"></a><img src="galerie3.jpg"><a href="#galerie" class="close-btn">&times;</a></div>
+<div id="img4" class="lightbox"><a href="#galerie" class="close-zoom"></a><img src="galerie4.jpg"><a href="#galerie" class="close-btn">&times;</a></div>
+<div id="img5" class="lightbox"><a href="#galerie" class="close-zoom"></a><img src="galerie5.jpg"><a href="#galerie" class="close-btn">&times;</a></div>
+<div id="img6" class="lightbox"><a href="#galerie" class="close-zoom"></a><img src="galerie6.jpg"><a href="#galerie" class="close-btn">&times;</a></div>
+<div id="img7" class="lightbox"><a href="#galerie" class="close-zoom"></a><img src="galerie7.jpg"><a href="#galerie" class="close-btn">&times;</a></div>
+<div id="img8" class="lightbox"><a href="#galerie" class="close-zoom"></a><img src="galerie8.jpg"><a href="#galerie" class="close-btn">&times;</a></div>
+<div id="img9" class="lightbox"><a href="#galerie" class="close-zoom"></a><img src="galerie9.png"><a href="#galerie" class="close-btn">&times;</a></div>
+<div id="img10" class="lightbox"><a href="#galerie" class="close-zoom"></a><img src="galerie10.png"><a href="#galerie" class="close-btn">&times;</a></div>
+<div id="img11" class="lightbox"><a href="#galerie" class="close-zoom"></a><img src="galerie11.png"><a href="#galerie" class="close-btn">&times;</a></div>
 
-<script src="https://cdn.jsdelivr.net/npm/luminous-lightbox@2.3.2/dist/Luminous.min.js"></script>
-<script>
-    // 1. On initialise la galerie
-    new LuminousGallery(document.querySelectorAll(".zoom"), {}, {
-        arrowNavigation: true
-    });
-    
-    // 2. On ajoute un événement "Clic" sur toute la page
-    document.addEventListener('click', function (e) {
-        // Si l'image en grand est ouverte (lum-lightbox existe)
-        const lightbox = document.querySelector('.lum-lightbox');
-        if (lightbox) {
-            // Si on clique n'importe où quand c'est ouvert, on ferme !
-            const closeBtn = document.querySelector('.lum-close-button');
-            if (closeBtn) closeBtn.click();
-        }
-    }, true);
-</script>
+<footer>ATLANTIC OUEST LOGISTICS © 2026</footer>
 
 </body>
 </html>
