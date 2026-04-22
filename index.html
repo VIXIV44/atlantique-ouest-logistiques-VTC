@@ -7,6 +7,8 @@
 
     <link rel="icon" type="image/png" href="logo.png">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/luminous-lightbox@2.3.2/dist/luminous-basic.min.css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
     <style>
         :root { 
@@ -42,7 +44,6 @@
             display: flex; align-items: center;
         }
 
-        /* LOGO HAUT GAUCHE AVEC FUSION */
         .logo-mini {
             height: 35px;
             margin-right: 15px;
@@ -50,7 +51,6 @@
             filter: brightness(1.2);
         }
 
-        /* LIGNE DE CÔTÉ (Menu haut gauche) */
         .nav-brand::after {
             content: "";
             display: inline-block;
@@ -75,7 +75,6 @@
             justify-content: center; align-items: center; text-align: center;
         }
 
-        /* LOGO CENTRAL AVEC FUSION */
         .logo-central {
             width: 220px;
             margin-bottom: 20px;
@@ -86,7 +85,6 @@
         h1 { font-size: 4.5rem; font-weight: 900; margin: 0; text-transform: uppercase; letter-spacing: -2px; }
         h1 span { color: var(--aol-vibrant-cyan); text-shadow: 0 0 30px var(--aol-vibrant-cyan); }
 
-        /* LIGNE AU DESSUS DE LA PRÉSENTATION */
         .separator-line {
             width: 120px;
             height: 4px;
@@ -156,21 +154,26 @@
 
 <section id="galerie" class="galerie-sec">
     <div class="galerie-grid">
-        <div class="img-item"><img src="galerie1.jpg"></div>
-        <div class="img-item"><img src="galerie2.jpg"></div>
-        <div class="img-item"><img src="galerie3.jpg"></div>
-        <div class="img-item"><img src="galerie4.jpg"></div>
-        <div class="img-item"><img src="galerie5.jpg"></div>
-        <div class="img-item"><img src="galerie6.jpg"></div>
-        <div class="img-item"><img src="galerie7.jpg"></div>
-        <div class="img-item"><img src="galerie8.jpg"></div>
-        <div class="img-item"><img src="galerie9.png"></div>
-        <div class="img-item"><img src="galerie10.png"></div>
-        <div class="img-item"><img src="galerie11.png"></div>
+        <div class="img-item"><a href="galerie1.jpg" class="zoom"><img src="galerie1.jpg"></a></div>
+        <div class="img-item"><a href="galerie2.jpg" class="zoom"><img src="galerie2.jpg"></a></div>
+        <div class="img-item"><a href="galerie3.jpg" class="zoom"><img src="galerie3.jpg"></a></div>
+        <div class="img-item"><a href="galerie4.jpg" class="zoom"><img src="galerie4.jpg"></a></div>
+        <div class="img-item"><a href="galerie5.jpg" class="zoom"><img src="galerie5.jpg"></a></div>
+        <div class="img-item"><a href="galerie6.jpg" class="zoom"><img src="galerie6.jpg"></a></div>
+        <div class="img-item"><a href="galerie7.jpg" class="zoom"><img src="galerie7.jpg"></a></div>
+        <div class="img-item"><a href="galerie8.jpg" class="zoom"><img src="galerie8.jpg"></a></div>
+        <div class="img-item"><a href="galerie9.png" class="zoom"><img src="galerie9.png"></a></div>
+        <div class="img-item"><a href="galerie10.png" class="zoom"><img src="galerie10.png"></a></div>
+        <div class="img-item"><a href="galerie11.png" class="zoom"><img src="galerie11.png"></a></div>
     </div>
 </section>
 
 <footer>ATLANTIC OUEST LOGISTICS © 2026</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/luminous-lightbox@2.3.2/dist/Luminous.min.js"></script>
+<script>
+    new LuminousGallery(document.querySelectorAll(".zoom"));
+</script>
 
 </body>
 </html>
