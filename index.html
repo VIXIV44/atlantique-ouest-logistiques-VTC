@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -42,14 +42,77 @@
         }
         .nav-link:hover { color: var(--aol-vibrant-cyan); text-shadow: 0 0 10px var(--aol-vibrant-cyan); }
 
-        /* HERO */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .logo-central { width: 220px; margin-bottom: 20px; mix-blend-mode: screen; filter: drop-shadow(0 0 20px var(--aol-vibrant-cyan)); }
-        h1 { font-size: 4.5rem; font-weight: 900; margin: 0; text-transform: uppercase; letter-spacing: -2px; }
+        /* HERO SECTION */
+        .hero { 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 120px 5% 60px 5%;
+        }
+
+        .logo-central { width: 200px; margin-bottom: 20px; mix-blend-mode: screen; filter: drop-shadow(0 0 20px var(--aol-vibrant-cyan)); }
+        h1 { font-size: 4rem; font-weight: 900; margin: 0 0 40px 0; text-transform: uppercase; letter-spacing: -2px; text-align: center; }
         h1 span { color: var(--aol-vibrant-cyan); text-shadow: 0 0 30px var(--aol-vibrant-cyan); }
 
-        .bio-container { max-width: 700px; background: rgba(0, 0, 0, 0.85); padding: 30px; border-radius: 12px; border-left: 5px solid var(--aol-vibrant-cyan); backdrop-filter: blur(10px); line-height: 1.8; }
-        .btn-rejoindre { display: inline-block; background: var(--aol-vibrant-cyan); color: #000; padding: 18px 45px; border-radius: 5px; text-decoration: none; font-weight: 900; margin-top: 40px; text-transform: uppercase; box-shadow: 0 5px 20px rgba(0, 242, 255, 0.4); }
+        .hero-main-container {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1200px;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .hero-left-content {
+            flex: 1;
+            min-width: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .bio-container { 
+            background: rgba(0, 0, 0, 0.85); 
+            padding: 30px; 
+            border-radius: 12px; 
+            border-left: 5px solid var(--aol-vibrant-cyan); 
+            backdrop-filter: blur(10px); 
+            line-height: 1.8;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .btn-rejoindre { 
+            display: inline-block; 
+            background: var(--aol-vibrant-cyan); 
+            color: #000; 
+            padding: 18px 45px; 
+            border-radius: 5px; 
+            text-decoration: none; 
+            font-weight: 900; 
+            margin-top: 25px; 
+            text-transform: uppercase; 
+            box-shadow: 0 5px 20px rgba(0, 242, 255, 0.4); 
+            transition: 0.3s;
+        }
+        .btn-rejoindre:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 242, 255, 0.6); }
+
+        .hero-right-image {
+            flex: 1;
+            max-width: 550px;
+            min-width: 320px;
+        }
+
+        .img-chauffeur {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
         /* GALERIE */
         .galerie-sec { padding: 100px 5%; background: rgba(0,0,0,0.8); border-top: 1px solid rgba(255,255,255,0.1); }
@@ -91,10 +154,19 @@
 <section class="hero">
     <img src="logo.png" alt="Logo" class="logo-central">
     <h1>ATLANTIC <span>OUEST</span> LOGISTICS</h1>
-    <div class="bio-container">
-        <p>L'ambition nantaise ne connaît plus de limites. <strong>Atlantic Ouest Logistics</strong> mise sur l'immersion et le réalisme sur ETS2.</p>
+    
+    <div class="hero-main-container">
+        <div class="hero-left-content">
+            <div class="bio-container">
+                <p>L'ambition nantaise ne connaît plus de limites. <strong>Atlantic Ouest Logistics</strong> mise sur l'immersion et le réalisme sur ETS2.</p>
+            </div>
+            <a href="https://discord.gg/zpwnF78MSr" target="_blank" class="btn-rejoindre">REJOIGNEZ-NOUS !</a>
+        </div>
+
+        <div class="hero-right-image">
+            <img src="chauffeur-du-mois.jpg" alt="Chauffeur du Mois" class="img-chauffeur">
+        </div>
     </div>
-    <a href="https://discord.gg/zpwnF78MSr" target="_blank" class="btn-rejoindre">REJOIGNEZ-NOUS !</a>
 </section>
 
 <section id="galerie" class="galerie-sec">
@@ -113,6 +185,8 @@
         <div class="img-item"><a href="#img12"><img src="galerie12.png"></a></div>
         <div class="img-item"><a href="#img13"><img src="galerie13.png"></a></div>
         <div class="img-item"><a href="#img14"><img src="galerie14.png"></a></div>
+        <div class="img-item"><a href="#img15"><img src="galerie15.png"></a></div>
+        <div class="img-item"><a href="#img16"><img src="galerie16.png"></a></div>
     </div>
 </section>
 
@@ -130,6 +204,8 @@
 <div id="img12" class="lightbox"><a href="#galerie" class="close-zoom"></a><img src="galerie12.png"><a href="#galerie" class="close-btn">&times;</a></div>
 <div id="img13" class="lightbox"><a href="#galerie" class="close-zoom"></a><img src="galerie13.png"><a href="#galerie" class="close-btn">&times;</a></div>
 <div id="img14" class="lightbox"><a href="#galerie" class="close-zoom"></a><img src="galerie14.png"><a href="#galerie" class="close-btn">&times;</a></div>
+<div id="img15" class="lightbox"><a href="#galerie" class="close-zoom"></a><img src="galerie15.png"><a href="#galerie" class="close-btn">&times;</a></div>
+<div id="img16" class="lightbox"><a href="#galerie" class="close-zoom"></a><img src="galerie16.png"><a href="#galerie" class="close-btn">&times;</a></div>
 
 <footer>ATLANTIC OUEST LOGISTICS © 2026</footer>
 
