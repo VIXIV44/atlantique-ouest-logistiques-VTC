@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Événements 2026 | AOL</title>
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { 
+            --aol-vibrant-cyan: #00f2ff; 
+            --aol-glow-cyan: rgba(0, 242, 255, 0.25); 
+            --aol-silver: #f3f4f6; 
+            --aol-text-muted: #8e9bb0; 
+            --aol-deep-space: #060913; 
+            --aol-card-bg: rgba(15, 23, 42, 0.3); 
+            --aol-card-border: rgba(0, 242, 255, 0.15); 
+        }
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            margin: 0; 
+            background-color: var(--aol-deep-space); 
+            background-image: radial-gradient(circle at 50% -20%, rgba(0, 242, 255, 0.09), transparent 60%); 
+            color: var(--aol-silver); 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header { 
+            display: flex; 
+            align-items: center; 
+            padding: 25px 6%; 
+            background: rgba(6, 9, 19, 0.8); 
+            backdrop-filter: blur(20px); 
+            border-bottom: 1px solid rgba(0, 242, 255, 0.1); 
+            position: fixed; top: 0; left: 0; width: 100%; box-sizing: border-box; z-index: 100; 
+        }
+        
+        .btn-retour { 
+            color: #fff; text-decoration: none; font-weight: 700; font-size: 0.85rem; 
+            text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; 
+            gap: 10px; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        
+        .btn-retour:hover { color: var(--aol-vibrant-cyan); text-shadow: 0 0 12px var(--aol-glow-cyan); transform: translateX(-3px); }
+
+        .page-evenements { padding: 160px 6% 40px 6%; max-width: 1000px; margin: 0 auto; flex: 1; width: 100%; box-sizing: border-box; }
+        
+        .titre-zone { text-align: center; margin-bottom: 60px; }
+        .titre-zone h1 { font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 5vw, 3.8rem); text-transform: uppercase; margin: 0 0 15px 0; color: #fff; letter-spacing: -1px; }
+        .titre-zone h1 span { color: var(--aol-vibrant-cyan); text-shadow: 0 0 30px rgba(0, 242, 255, 0.4); filter: drop-shadow(0 0 10px rgba(0, 242, 255, 0.2)); }
+        .titre-zone p { color: var(--aol-text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+
+        /* STRUCTURE DU CALENDRIER (TIMELINE) */
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+            padding-left: 30px;
+            border-left: 2px solid rgba(0, 242, 255, 0.15);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -41px;
+            top: 24px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--aol-deep-space);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item.active::before {
+            background: var(--aol-vibrant-cyan);
+            border-color: var(--aol-vibrant-cyan);
+            box-shadow: 0 0 15px var(--aol-vibrant-cyan);
+        }
+        
+        /* Point grisé pour les mois passés */
+        .timeline-item.past::before {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* CARTES DES MOIS */
+        .mois-card {
+            background: var(--aol-card-bg);
+            border: 1px solid var(--aol-card-border);
+            border-radius: 14px;
+            padding: 25px 35px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item.active .mois-card {
+            border-color: var(--aol-vibrant-cyan);
+            box-shadow: 0 0 25px rgba(0, 242, 255, 0.05);
+            background: rgba(15, 23, 42, 0.6);
+        }
+        
+        /* Style adouci pour les cartes passées */
+        .timeline-item.past .mois-card {
+            border-color: rgba(255, 255, 255, 0.05);
+            background: rgba(15, 23, 42, 0.15);
+            opacity: 0.6;
+        }
+
+        .mois-info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .mois-info-header h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.6rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #fff;
+        }
+
+        .timeline-item.active .mois-info-header h2 {
+            color: var(--aol-vibrant-cyan);
+        }
+        
+        .timeline-item.past .mois-info-header h2 {
+            color: var(--aol-text-muted);
+        }
+
+        /* STRUCTURE DES CONVOIS MULTIPLES */
+        .convois-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .convoi-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .convoi-details {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .event-desc {
+            margin: 0;
+            font-size: 1rem;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .event-time-badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--aol-text-muted);
+            background: rgba(142, 155, 176, 0.15);
+            padding: 4px 10px;
+            border-radius: 4px;
+            border: 1px solid rgba(142, 155, 176, 0.1);
+            letter-spacing: 0.5px;
+        }
+
+        /* BLOC LOADING (CHARGEMENT ANIMÉ) */
+        .loading-block {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+            padding: 10px 0;
+        }
+
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(0, 242, 255, 0.1);
+            border-top-color: var(--aol-vibrant-cyan);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-text {
+            font-size: 0.9rem;
+            color: var(--aol-text-muted);
+            font-style: italic;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* BADGES ET BOUTONS */
+        .badge-statut {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .timeline-item.active .badge-statut {
+            background: rgba(0, 242, 255, 0.1);
+            color: var(--aol-vibrant-cyan);
+            border-color: rgba(0, 242, 255, 0.2);
+        }
+        
+        .timeline-item.past .badge-statut {
+            background: rgba(255, 255, 255, 0.02);
+            color: #4b5563;
+            border-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .btn-action-evenement {
+            display: inline-block;
+            background: var(--aol-vibrant-cyan);
+            color: #030712;
+            padding: 10px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 15px var(--aol-glow-cyan);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            white-space: nowrap;
+        }
+
+        .btn-action-evenement:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(0, 242, 255, 0.4);
+        }
+
+        footer { text-align: center; padding: 40px; font-size: 0.75rem; color: #4b5563; border-top: 1px solid rgba(255, 255, 255, 0.04); text-transform: uppercase; margin-top: 60px; }
+        
+        @media (max-width: 768px) {
+            .convoi-row { flex-direction: column; text-align: center; gap: 15px; padding: 15px; }
+            .convoi-details { flex-direction: column; gap: 8px; }
+            .mois-info-header { flex-direction: column; gap: 10px; }
+        }
+        @media (max-width: 650px) {
+            .mois-card { padding: 25px; }
+            .loading-block { justify-content: center; }
+            .timeline { padding-left: 20px; }
+            .timeline-item::before { left: -31px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="btn-retour">← Retour à l'accueil</a>
+</header>
+
+<main class="page-evenements">
+    <div class="titre-zone">
+        <h1>Événements <span>2026</span></h1>
+        <p>Suivez notre calendrier de route complet pour l'année 2026 et rejoignez nos prochains convois officiels.</p>
+    </div>
+
+    <div class="timeline">
+        
+        <div class="timeline-item past">
+            <div class="mois-card">
+                <div class="mois-info-header">
+                    <h2>Janvier 2026</h2>
+                    <span class="badge-statut">Terminé</span>
+                </div>
+                <div class="loading-block">
+                    <span class="loading-text">Aucun convoi ce mois-ci.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item past">
+            <div class="mois-card">
+                <div class="mois-info-header">
+                    <h2>Février 2026</h2>
+                    <span class="badge-statut">Terminé</span>
+                </div>
+                <div class="loading-block">
+                    <span class="loading-text">Aucun convoi ce mois-ci.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item past">
+            <div class="mois-card">
+                <div class="mois-info-header">
+                    <h2>Mars 2026</h2>
+                    <span class="badge-statut">Terminé</span>
+                </div>
+                <div class="loading-block">
+                    <span class="loading-text">Aucun convoi ce mois-ci.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item past">
+            <div class="mois-card">
+                <div class="mois-info-header">
+                    <h2>Avril 2026</h2>
+                    <span class="badge-statut">Terminé</span>
+                </div>
+                <div class="loading-block">
+                    <span class="loading-text">Aucun convoi ce mois-ci.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item past">
+            <div class="mois-card">
+                <div class="mois-info-header">
+                    <h2>Mai 2026</h2>
+                    <span class="badge-statut">Terminé</span>
+                </div>
+                <div class="loading-block">
+                    <span class="loading-text">Aucun convoi ce mois-ci.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item active">
+            <div class="mois-card">
+                <div class="mois-info-header">
+                    <h2>Juin 2026</h2>
+                    <span class="badge-statut">Confirmé</span>
+                </div>
+                
+                <div class="convois-container">
+                    <div class="convoi-row">
+                        <div class="convoi-details">
+                            <p class="event-desc">🚛 Convoi C.B.C</p>
+                            <span class="event-time-badge">19 / 06 / 2026 • Rdv 20h30 | Départ 21h (UTC+2)</span>
+                        </div>
+                        <a href="https://truckersmp.com/events/36090" target="_blank" class="btn-action-evenement">Rejoindre</a>
+                    </div>
+
+                    <div class="convoi-row">
+                        <div class="convoi-details">
+                            <p class="event-desc">🚛 Convoi Reacon</p>
+                            <span class="event-time-badge">20 / 06 / 2026 • Rdv 20h30 | Départ 21h (UTC+2)</span>
+                        </div>
+                        <a href="https://trucksbook.eu/convoy/25952" target="_blank" class="btn-action-evenement">Rejoindre</a>
+                    </div>
+
+                    <div class="convoi-row">
+                        <div class="convoi-details">
+                            <p class="event-desc">🚛 Convoi BelFast</p>
+                            <span class="event-time-badge">27 / 06 / 2026 • Rdv 20h | Départ 20h30 (UTC+2)</span>
+                        </div>
+                        <a href="https://truckersmp.com/events/35850" target="_blank" class="btn-action-evenement">Rejoindre</a>
+                    </div>
+
+                    <div class="convoi-row">
+                        <div class="convoi-details">
+                            <p class="event-desc">🚛 Premier Convoi de la TFT</p>
+                            <span class="event-time-badge">28 / 06 / 2026 • Rdv 15h30 | Départ 16h30 (UTC+2)</span>
+                        </div>
+                        <a href="https://truckersmp.com/events/35995-premier-convoi-de-la-tft" target="_blank" class="btn-action-evenement">Rejoindre</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item active">
+            <div class="mois-card">
+                <div class="mois-info-header">
+                    <h2>Juillet 2026</h2>
+                    <span class="badge-statut">Confirmé</span>
+                </div>
+                
+                <div class="convois-container">
+                    <div class="convoi-row">
+                        <div class="convoi-details">
+                            <p class="event-desc">🚛 Convoi RedRooster</p>
+                            <span class="event-time-badge">04 / 07 / 2026 • Rdv 20h30 | Départ 21h (UTC+2)</span>
+                        </div>
+                        <a href="https://truckersmp.com/events/35357" target="_blank" class="btn-action-evenement">Rejoindre</a>
+                    </div>
+
+                    <div class="convoi-row">
+                        <div class="convoi-details">
+                            <p class="event-desc">🚛 Convoi L.C.F - La Route du Soleil</p>
+                            <span class="event-time-badge">11 / 07 / 2026 • Rdv 20h30 | Départ 21h30 (UTC+2)</span>
+                        </div>
+                        <a href="https://truckersmp.com/events/36247-la-route-du-soleil" target="_blank" class="btn-action-evenement">Rejoindre</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item active">
+            <div class="mois-card">
+                <div class="mois-info-header">
+                    <h2>Août 2026</h2>
+                    <span class="badge-statut">Confirmé</span>
+                </div>
+                
+                <div class="convois-container">
+                    <div class="convoi-row">
+                        <div class="convoi-details">
+                            <p class="event-desc">🚛 Convoi d'ouverture officiel de la RV Transport</p>
+                            <span class="event-time-badge">01 / 08 / 2026 • Rdv 20h | Départ 21h (UTC+2)</span>
+                        </div>
+                        <a href="https://truckersmp.com/events/35935-convoi-d-ouverture-officiel-de-la-rv-transport" target="_blank" class="btn-action-evenement">Rejoindre</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item active">
+            <div class="mois-card">
+                <div class="mois-info-header">
+                    <h2>Septembre 2026</h2>
+                    <span class="badge-statut">Confirmé</span>
+                </div>
+                
+                <div class="convois-container">
+                    <div class="convoi-row">
+                        <div class="convoi-details">
+                            <p class="event-desc">🚛 Convoi d'ouverture de la LionRooster Express</p>
+                            <span class="event-time-badge">12 / 09 / 2026 • Rdv 20h30 | Départ 21h (UTC+2)</span>
+                        </div>
+                        <a href="https://truckersmp.com/events/35954-convoi-d'ouverture-de-la-lionrooster-express" target="_blank" class="btn-action-evenement">Rejoindre</a>
+                    </div>
+
+                    <div class="convoi-row">
+                        <div class="convoi-details">
+                            <p class="event-desc">🚛 Convois Ouverture LRDS</p>
+                            <span class="event-time-badge">19 / 09 / 2026 • Rdv 20h | Départ 21h (UTC+2)</span>
+                        </div>
+                        <a href="https://truckersmp.com/events/36229-convois-ouverture-lrds" target="_blank" class="btn-action-evenement">Rejoindre</a>
+                    </div>
+
+                    <div class="convoi-row">
+                        <div class="convoi-details">
+                            <p class="event-desc">🚛 Convoi d'Admag</p>
+                            <span class="event-time-badge">26 / 09 / 2026 • Rdv 20h | Départ 21h (UTC+2)</span>
+                        </div>
+                        <a href="https://truckersmp.com/events/35992" target="_blank" class="btn-action-evenement">Rejoindre</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item active">
+            <div class="mois-card">
+                <div class="mois-info-header">
+                    <h2>Octobre 2026</h2>
+                    <span class="badge-statut">Confirmé</span>
+                </div>
+                
+                <div class="convois-container">
+                    <div class="convoi-row">
+                        <div class="convoi-details">
+                            <p class="event-desc">🚚 Convoi d'ouverture - Atlantique Ouest Logistiques</p>
+                            <span class="event-time-badge">03 / 10 / 2026 • Rdv 20h | Départ 21h (UTC+2)</span>
+                        </div>
+                        <a href="https://truckersmp.com/events/36239-convoi-d%27ouverture-atlantique-ouest-logistiques" target="_blank" class="btn-action-evenement">Rejoindre</a>
+                    </div>
+
+                    <div class="convoi-row">
+                        <div class="convoi-details">
+                            <p class="event-desc">🎀 Convoi Spécial Octobre Rose - LiiN3 Group' France</p>
+                            <span class="event-time-badge">17 / 10 / 2026 • Rdv 20h30 | Départ 21h30 (UTC+2)</span>
+                        </div>
+                        <a href="https://truckersmp.com/events/35209-pink'tober-convoy--liin3-group'-france" target="_blank" class="btn-action-evenement">Rejoindre</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item active">
+            <div class="mois-card">
+                <div class="mois-info-header">
+                    <h2>Novembre 2026</h2>
+                    <span class="badge-statut">Confirmé</span>
+                </div>
+                
+                <div class="convois-container">
+                    <div class="convoi-row">
+                        <div class="convoi-details">
+                            <p class="event-desc">🚛 Convoi FIC</p>
+                            <span class="event-time-badge">27 / 11 / 2026 • Rdv 20h | Départ 21h (UTC+2)</span>
+                        </div>
+                        <a href="https://truckersmp.com/events/35968" target="_blank" class="btn-action-evenement">Rejoindre</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="mois-card">
+                <div class="mois-info-header">
+                    <h2>Décembre 2026</h2>
+                    <span class="badge-statut">En attente</span>
+                </div>
+                <div class="loading-block">
+                    <div class="spinner"></div>
+                    <span class="loading-text">En attente d'invitations ou de convois...</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<footer>ATLANTIQUE OUEST LOGISTIQUES © 2026 - Tous droits réservés.</footer>
+
+</body>
+</html>

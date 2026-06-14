@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chauffeurs du Mois | AOL</title>
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { 
+            --aol-vibrant-cyan: #00f2ff; 
+            --aol-glow-cyan: rgba(0, 242, 255, 0.25); 
+            --aol-silver: #f3f4f6; 
+            --aol-text-muted: #8e9bb0; 
+            --aol-deep-space: #060913; 
+            --aol-card-bg: rgba(15, 23, 42, 0.4); 
+            --aol-card-border: rgba(0, 242, 255, 0.15); 
+        }
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            margin: 0; 
+            background-color: var(--aol-deep-space); 
+            background-image: radial-gradient(circle at 50% -20%, rgba(0, 242, 255, 0.09), transparent 60%); 
+            color: var(--aol-silver); 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header { 
+            display: flex; 
+            align-items: center; 
+            padding: 25px 6%; 
+            background: rgba(6, 9, 19, 0.8); 
+            backdrop-filter: blur(20px); 
+            border-bottom: 1px solid rgba(0, 242, 255, 0.1); 
+            position: fixed; top: 0; left: 0; width: 100%; box-sizing: border-box; z-index: 100; 
+        }
+        
+        .btn-retour { 
+            color: #fff; text-decoration: none; font-weight: 700; font-size: 0.85rem; 
+            text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; 
+            gap: 10px; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        
+        .btn-retour:hover { color: var(--aol-vibrant-cyan); text-shadow: 0 0 12px var(--aol-glow-cyan); transform: translateX(-3px); }
+
+        .page-chauffeurs { padding: 160px 6% 40px 6%; max-width: 1200px; margin: 0 auto; flex: 1; width: 100%; box-sizing: border-box; }
+        
+        .titre-zone { text-align: center; margin-bottom: 60px; }
+        .titre-zone h1 { font-family: 'Syne', sans-serif; font-size: clamp(2.3rem, 5vw, 3.5rem); text-transform: uppercase; margin: 0 0 15px 0; color: #fff; letter-spacing: -1px; }
+        .titre-zone h1 span { color: var(--aol-vibrant-cyan); text-shadow: 0 0 30px rgba(0, 242, 255, 0.4); filter: drop-shadow(0 0 10px rgba(0, 242, 255, 0.2)); }
+        .titre-zone p { color: var(--aol-text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+
+        /* GRILLE DE PRESENTATION */
+        .chauffeurs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .chauffeur-card {
+            background: var(--aol-card-bg);
+            border: 1px solid var(--aol-card-border);
+            border-radius: 16px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chauffeur-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--aol-vibrant-cyan);
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.08);
+        }
+
+        /* ZONE IMAGE DU CHAUFFEUR */
+        .card-image-wrap {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        .card-image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .chauffeur-card:hover .card-image-wrap img {
+            transform: scale(1.03);
+        }
+
+        /* SQUELETTE EN ATTENDE D'IMAGE */
+        .placeholder-img {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .placeholder-img svg {
+            width: 40px;
+            height: 40px;
+            fill: currentColor;
+        }
+
+        /* CONTENU INFOS */
+        .card-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .month-badge {
+            align-self: flex-start;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--aol-vibrant-cyan);
+            background: rgba(0, 242, 255, 0.1);
+            padding: 5px 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(0, 242, 255, 0.15);
+        }
+
+        .card-content h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.4rem;
+            font-family: 'Syne', sans-serif;
+            color: #fff;
+        }
+
+        /* ANIMATION CLIGNOTANTE NÉON POUR PROGETTO */
+        .glow-blink {
+            color: var(--aol-vibrant-cyan) !important;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            animation: neonPulse 1.5s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes neonPulse {
+            0% {
+                text-shadow: 0 0 4px rgba(0, 242, 255, 0.2), 0 0 10px rgba(0, 242, 255, 0.2);
+                opacity: 0.6;
+            }
+            100% {
+                text-shadow: 0 0 8px var(--aol-vibrant-cyan), 0 0 20px var(--aol-vibrant-cyan), 0 0 30px rgba(0, 242, 255, 0.6);
+                opacity: 1;
+            }
+        }
+
+        .card-content p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--aol-text-muted);
+            line-height: 1.5;
+        }
+
+        /* STYLE DES CARTES VERROUILLÉES */
+        .chauffeur-card.locked {
+            border-color: rgba(255, 255, 255, 0.03);
+            background: rgba(15, 23, 42, 0.1);
+            opacity: 0.5;
+        }
+        
+        .chauffeur-card.locked:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: rgba(255, 255, 255, 0.03);
+        }
+
+        .chauffeur-card.locked .month-badge {
+            color: var(--aol-text-muted);
+            background: rgba(255, 255, 255, 0.03);
+            border-color: transparent;
+        }
+
+        footer { text-align: center; padding: 40px; font-size: 0.75rem; color: #4b5563; border-top: 1px solid rgba(255, 255, 255, 0.04); text-transform: uppercase; margin-top: 60px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="btn-retour">← Retour à l'accueil</a>
+</header>
+
+<main class="page-chauffeurs">
+    <div class="titre-zone">
+        <h1>Chauffeurs <span>du Mois</span></h1>
+        <p>Découvrez et félicitez les routiers d'exception qui se sont illustrés par leur activité et leur régularité.</p>
+    </div>
+
+    <div class="chauffeurs-grid">
+        
+        <!-- MAI 2026 -->
+        <div class="chauffeur-card">
+            <div class="card-image-wrap">
+                <img src="chauffeur-mai-2026.jpg" alt="Chauffeur du mois de Mai - Progetto" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="placeholder-img" style="display: none;">
+                    <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                    <span>Image manquante (chauffeur-mai-2026.jpg)</span>
+                </div>
+            </div>
+            <div class="card-content">
+                <span class="month-badge">Mai 2026</span>
+                <h3 class="glow-blink">Progetto</h3>
+                <p>Félicitations pour son investissement exceptionnel, sa conduite exemplaire et son nombre important de kilomètres parcourus tout au long du mois !</p>
+            </div>
+        </div>
+
+        <!-- JUIN 2026 -->
+        <div class="chauffeur-card">
+            <div class="card-image-wrap">
+                <div class="placeholder-img">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                    <span>Sélection en cours...</span>
+                </div>
+            </div>
+            <div class="card-content">
+                <span class="month-badge">Juinte 2026</span>
+                <h3>En attente de nomination</h3>
+                <p>Les statistiques de route et les livres de bord sont en cours d'analyse par l'équipe logistique.</p>
+            </div>
+        </div>
+
+        <!-- JUILLET 2026 -->
+        <div class="chauffeur-card locked">
+            <div class="card-image-wrap">
+                <div class="placeholder-img">
+                    <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                </div>
+            </div>
+            <div class="card-content">
+                <span class="month-badge">Juillet 2026</span>
+                <h3>Période verrouillée</h3>
+                <p>Rendez-vous à la fin du mois concerné pour découvrir le vainqueur.</p>
+            </div>
+        </div>
+
+        <!-- AOÛT 2026 -->
+        <div class="chauffeur-card locked">
+            <div class="card-image-wrap">
+                <div class="placeholder-img">
+                    <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                </div>
+            </div>
+            <div class="card-content">
+                <span class="month-badge">Août 2026</span>
+                <h3>Période verrouillée</h3>
+                <p>Rendez-vous à la fin du mois concerné pour découvrir le vainqueur.</p>
+            </div>
+        </div>
+
+        <!-- SEPTEMBRE 2026 -->
+        <div class="chauffeur-card locked">
+            <div class="card-image-wrap">
+                <div class="placeholder-img">
+                    <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                </div>
+            </div>
+            <div class="card-content">
+                <span class="month-badge">Septembre 2026</span>
+                <h3>Période verrouillée</h3>
+                <p>Rendez-vous à la fin du mois concerné pour découvrir le vainqueur.</p>
+            </div>
+        </div>
+
+        <!-- OCTOBRE 2026 -->
+        <div class="chauffeur-card locked">
+            <div class="card-image-wrap">
+                <div class="placeholder-img">
+                    <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                </div>
+            </div>
+            <div class="card-content">
+                <span class="month-badge">Octobre 2026</span>
+                <h3>Période verrouillée</h3>
+                <p>Rendez-vous à la fin du mois concerné pour découvrir le vainqueur.</p>
+            </div>
+        </div>
+
+        <!-- NOVEMBRE 2026 -->
+        <div class="chauffeur-card locked">
+            <div class="card-image-wrap">
+                <div class="placeholder-img">
+                    <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                </div>
+            </div>
+            <div class="card-content">
+                <span class="month-badge">Novembre 2026</span>
+                <h3>Période verrouillée</h3>
+                <p>Rendez-vous à la fin du mois concerné pour découvrir le vainqueur.</p>
+            </div>
+        </div>
+
+        <!-- DÉCEMBRE 2026 -->
+        <div class="chauffeur-card locked">
+            <div class="card-image-wrap">
+                <div class="placeholder-img">
+                    <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                </div>
+            </div>
+            <div class="card-content">
+                <span class="month-badge">Décembre 2026</span>
+                <h3>Période verrouillée</h3>
+                <p>Rendez-vous à la fin du mois concerné pour découvrir le vainqueur.</p>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<footer>ATLANTIQUE OUEST LOGISTIQUES © 2026 - Tous droits réservés.</footer>
+
+</body>
+</html>

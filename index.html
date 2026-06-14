@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlantique Ouest Logistiques | Officiel</title>
+
+    <!-- Logo pour l'onglet du navigateur -->
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    
+    <!-- Importation de polices modernes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { 
+            --aol-vibrant-cyan: #00f2ff;
+            --aol-glow-cyan: rgba(0, 242, 255, 0.25);
+            --aol-deep-blue: #0044ff;
+            --aol-silver: #f3f4f6;
+            --aol-text-muted: #bcbcbc;
+            --aol-deep-space: #060913; 
+            --aol-card-bg: rgba(15, 23, 42, 0.4);
+            --aol-card-border: rgba(0, 242, 255, 0.1);
+        }
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            margin: 0; 
+            overflow-x: hidden; 
+            color: var(--aol-silver); 
+            background-color: var(--aol-deep-space);
+            background-image: 
+                radial-gradient(circle at 50% -20%, rgba(0, 242, 255, 0.07), transparent 50%),
+                radial-gradient(circle at 10% 40%, rgba(0, 68, 255, 0.04), transparent 40%),
+                radial-gradient(circle at 90% 70%, rgba(0, 242, 255, 0.03), transparent 40%);
+            background-attachment: fixed;
+        }
+
+        /* NAVIGATION BAR */
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding: 20px 6%; 
+            box-sizing: border-box;
+            width: 100%;
+            background: rgba(6, 9, 19, 0.85); 
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0, 242, 255, 0.15);
+            position: fixed; top: 0; left: 0; z-index: 100;
+        }
+        
+        .nav-brand { 
+            font-family: 'Syne', sans-serif;
+            font-weight: 800; font-size: 1.05rem; color: #ffffff; 
+            text-decoration: none; letter-spacing: 1.5px; text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); 
+        }
+
+        .nav-menu { display: flex; gap: 28px; }
+        
+        .nav-link { 
+            color: var(--aol-text-muted); text-decoration: none; font-size: 0.8rem; font-weight: 700; 
+            text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;
+            position: relative; padding: 4px 0;
+        }
+        
+        .nav-link::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+            background-color: var(--aol-vibrant-cyan); transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover { color: #fff; text-shadow: 0 0 10px var(--aol-glow-cyan); }
+        .nav-link:hover::after { width: 100%; }
+
+        /* HERO SECTION */
+        .hero { 
+            min-height: 85vh; display: flex; flex-direction: column; justify-content: center; 
+            align-items: center; text-align: center; padding: 140px 20px 40px 20px; box-sizing: border-box;
+        }
+
+        /* BLOC INTERACTIF LOGO + BOUTONS */
+        .hero-interactive-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 35px;
+            width: 100%;
+            max-width: 950px;
+        }
+        
+        .logo-central { 
+            width: 250px; border-radius: 20px; 
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            filter: drop-shadow(0 0 25px rgba(0, 242, 255, 0.15));
+            animation: floatAnimation 5s ease-in-out infinite;
+        }
+
+        .btn-secondaire {
+            display: inline-block;
+            background: rgba(15, 23, 42, 0.6);
+            color: #fff;
+            border: 1px solid var(--aol-card-border);
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            min-width: 200px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+        }
+
+        .btn-secondaire:hover {
+            border-color: var(--aol-vibrant-cyan);
+            color: var(--aol-vibrant-cyan);
+            box-shadow: 0 0 25px rgba(0, 242, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        @keyframes floatAnimation {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); filter: drop-shadow(0 0 35px rgba(0, 242, 255, 0.25)); }
+            100% { transform: translateY(0px); }
+        }
+        
+        h1 { 
+            font-family: 'Syne', sans-serif; font-size: clamp(2.2rem, 6vw, 4.2rem); 
+            font-weight: 800; margin: 0; text-transform: uppercase; letter-spacing: -1px; line-height: 1.1; color: #ffffff;
+        }
+        
+        h1 span { 
+            color: var(--aol-vibrant-cyan);
+            background: linear-gradient(135deg, #00f2ff 0%, #0044ff 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px rgba(0, 242, 255, 0.3));
+        }
+
+        .hero p { font-size: 1.15rem; color: #bcbcbc; max-width: 650px; margin-top: 25px; line-height: 1.6; font-weight: 400; }
+
+        .btn-rejoindre { 
+            display: inline-block; background: var(--aol-vibrant-cyan); color: #030712; 
+            padding: 18px 48px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.95rem;
+            margin-top: 45px; text-transform: uppercase; letter-spacing: 1px;
+            box-shadow: 0 0 30px var(--aol-glow-cyan); transition: all 0.4s ease; border: 1px solid transparent;
+        }
+        
+        .btn-rejoindre:hover { 
+            transform: translateY(-3px); background: transparent; color: var(--aol-vibrant-cyan);
+            border-color: var(--aol-vibrant-cyan); box-shadow: 0 0 40px rgba(0, 242, 255, 0.4);
+        }
+
+        /* SECTION GALERIE */
+        .galerie-section { padding: 60px 6% 100px 6%; max-width: 1200px; margin: 0 auto; box-sizing: border-box; }
+        .galerie-section h2 { font-family: 'Syne', sans-serif; font-size: 2.2rem; text-transform: uppercase; text-align: center; margin-bottom: 40px; letter-spacing: 1px; color: #fff; }
+        .galerie-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        
+        .galerie-card {
+            background: var(--aol-card-bg); border: 1px solid var(--aol-card-border); border-radius: 12px;
+            padding: 30px; text-align: center; display: flex; flex-direction: column; justify-content: space-between;
+            align-items: center; transition: all 0.3s ease; backdrop-filter: blur(10px);
+        }
+
+        .galerie-card:hover { transform: translateY(-5px); border-color: var(--aol-vibrant-cyan); box-shadow: 0 10px 30px rgba(0, 242, 255, 0.1); background: rgba(15, 23, 42, 0.8); }
+        .galerie-card h3 { font-family: 'Syne', sans-serif; font-size: 1.25rem; margin: 0 0 15px 0; color: #fff; text-transform: uppercase; letter-spacing: 0.5px; }
+        .galerie-card p { font-size: 0.9rem; color: var(--aol-text-muted); margin: 0 0 25px 0; line-height: 1.5; }
+
+        .btn-galerie {
+            display: inline-block; background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px 24px; border-radius: 6px; text-decoration: none; font-size: 0.85rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.3s ease; width: 80%;
+        }
+
+        .galerie-card:hover .btn-galerie { background: var(--aol-vibrant-cyan); color: #030712; border-color: var(--aol-vibrant-cyan); box-shadow: 0 0 15px var(--aol-glow-cyan); }
+
+        /* FOOTER */
+        footer { text-align: center; padding: 35px; font-size: 0.75rem; font-weight: 500; border-top: 1px solid rgba(255, 255, 255, 0.04); color: #4b5563; letter-spacing: 1px; text-transform: uppercase; }
+        
+        @media (max-width: 900px) { .galerie-grid { grid-template-columns: 1fr; gap: 20px; } }
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; text-align: center; padding: 15px; }
+            .nav-menu { gap: 15px; flex-wrap: wrap; justify-content: center; }
+            .hero { padding-top: 160px; } 
+            .hero-interactive-row { flex-direction: column; gap: 15px; }
+            .logo-central { width: 200px; order: -1; }
+            .btn-secondaire { width: 100%; max-width: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="#" class="nav-brand">Site Web officiel de l'AOL</a>
+    <nav class="nav-menu">
+        <a href="https://www.facebook.com/profile.php?id=61572367872004&locale=fr_FR" target="_blank" class="nav-link">Facebook</a>
+        <a href="https://trucksbook.eu/company/223011" target="_blank" class="nav-link">TrucksBook</a>
+        <a href="https://hub.truckyapp.com/company/44774" target="_blank" class="nav-link">Trucky</a>
+        <a href="https://truckersmp.com/vtc/88622" target="_blank" class="nav-link">TruckersMP</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <!-- Zone interactive avec tes deux boutons exacts autour du logo -->
+    <div class="hero-interactive-row">
+        <a href="evenements.html" class="btn-secondaire">Événements</a>
+        
+        <img src="logo.jpg" alt="Logo Principal AOL" class="logo-central">
+        
+        <a href="chauffeurs-du-mois.html" class="btn-secondaire">Chauffeurs du Mois</a>
+    </div>
+
+    <h1>ATLANTIQUE <span>OUEST</span> LOGISTIQUES</h1>
+    <p>Bienvenue sur le portail officiel de notre entreprise de transport sur ETS2. Rejoignez une équipe passionnée combinant réalisme, partage et passion de la route.</p>
+    <a href="https://discord.gg/YcurVzvNR7" target="_blank" class="btn-rejoindre">REJOINDRE LE DISCORD</a>
+</section>
+
+<section class="galerie-section">
+    <h2>Galerie Photos</h2>
+    <div class="galerie-grid">
+        
+        <!-- Carte 1 -> Connectée à convois-officiels.html -->
+        <div class="galerie-card">
+            <h3>Convois Officiels</h3>
+            <p>Découvrez les clichés de nos grands événements d'entreprise officiels organisés par l'AOL.</p>
+            <a href="convois-officiels.html" class="btn-galerie">Voir l'album</a>
+        </div>
+
+        <!-- Carte 2 -> Connectée à convois-roleplay.html -->
+        <div class="galerie-card">
+            <h3>Convois RolePlay</h3>
+            <p>Immersion totale. Retrouvez les captures de nos livraisons en mode Convoi RolePlay réaliste.</p>
+            <a href="convois-roleplay.html" class="btn-galerie">Voir l'album</a>
+        </div>
+
+        <!-- Carte 3 -> Connectée à convois-partenaires.html -->
+        <div class="galerie-card">
+            <h3>Convois Partenaires</h3>
+            <p>Les moments forts partagés sur la route lors de nos événements inter-entreprises avec nos partenaires.</p>
+            <a href="convois-partenaires.html" class="btn-galerie">Voir l'album</a>
+        </div>
+
+    </div>
+</section>
+
+<footer>ATLANTIQUE OUEST LOGISTIQUES © 2026 - Tous droits réservés.</footer>
+
+</body>
+</html>
