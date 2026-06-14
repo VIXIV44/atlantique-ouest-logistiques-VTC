@@ -15,12 +15,3 @@ Ce site vitrine moderne et futuriste permet de présenter notre structure, de pa
 
 ---
 
-## 📂 Structure du Projet
-
-```text
-├── index.html                  # Page d'accueil principale
-├── chauffeurs.html             # Page de présentation des chauffeurs du mois
-├── convois.html                # Page galerie "Convois Partenaires"
-├── logo.jpg                    # Logo officiel d'AOL (Favicon et Header)
-├── chauffeur-mai-2026.jpg      # Photo du chauffeur du mois (Progetto)
-└── partenaire1.jpg à 17.jpg   # Les 17 images de la galerie photos
