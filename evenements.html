@@ -193,24 +193,10 @@
             padding: 10px 0;
         }
 
-        .spinner {
-            width: 16px;
-            height: 16px;
-            border: 2px solid rgba(0, 242, 255, 0.1);
-            border-top-color: var(--aol-vibrant-cyan);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
         .loading-text {
             font-size: 0.9rem;
             color: var(--aol-text-muted);
             font-style: italic;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         /* BADGES ET BOUTONS */
@@ -290,7 +276,7 @@
 
     <div class="timeline">
         
-        <!-- Mois passés ... -->
+        <!-- Mois passés -->
         <div class="timeline-item past">
             <div class="mois-card">
                 <div class="mois-info-header">
@@ -347,6 +333,7 @@
             </div>
         </div>
 
+        <!-- Juin 2026 -->
         <div class="timeline-item active">
             <div class="mois-card">
                 <div class="mois-info-header">
@@ -357,39 +344,16 @@
                 <div class="convois-container">
                     <div class="convoi-row">
                         <div class="convoi-details">
-                            <p class="event-desc">🚛 Convoi C.B.C</p>
-                            <span class="event-time-badge">19 / 06 / 2026 • Rdv 20h30 | Départ 21h (UTC+2)</span>
-                        </div>
-                        <a href="https://truckersmp.com/events/36090" target="_blank" class="btn-action-evenement">Rejoindre</a>
-                    </div>
-
-                    <div class="convoi-row">
-                        <div class="convoi-details">
-                            <p class="event-desc">🚛 Convoi Reacon</p>
-                            <span class="event-time-badge">20 / 06 / 2026 • Rdv 20h30 | Départ 21h (UTC+2)</span>
-                        </div>
-                        <a href="https://trucksbook.eu/convoy/25952" target="_blank" class="btn-action-evenement">Rejoindre</a>
-                    </div>
-
-                    <div class="convoi-row">
-                        <div class="convoi-details">
                             <p class="event-desc">🚛 Convoi BelFast</p>
                             <span class="event-time-badge">27 / 06 / 2026 • Rdv 20h | Départ 20h30 (UTC+2)</span>
                         </div>
                         <a href="https://truckersmp.com/events/35850" target="_blank" class="btn-action-evenement">Rejoindre</a>
                     </div>
-
-                    <div class="convoi-row">
-                        <div class="convoi-details">
-                            <p class="event-desc">🚛 Premier Convoi de la TFT</p>
-                            <span class="event-time-badge">28 / 06 / 2026 • Rdv 15h30 | Départ 16h30 (UTC+2)</span>
-                        </div>
-                        <a href="https://truckersmp.com/events/35995-premier-convoi-de-la-tft" target="_blank" class="btn-action-evenement">Rejoindre</a>
-                    </div>
                 </div>
             </div>
         </div>
 
+        <!-- Juillet 2026 -->
         <div class="timeline-item active">
             <div class="mois-card">
                 <div class="mois-info-header">
@@ -405,6 +369,7 @@
                         </div>
                         <a href="https://truckersmp.com/events/36360" target="_blank" class="btn-action-evenement">Rejoindre</a>
                     </div>
+
                     <div class="convoi-row">
                         <div class="convoi-details">
                             <p class="event-desc">🚛 Convoi RedRooster</p>
@@ -421,10 +386,18 @@
                         <a href="https://truckersmp.com/events/36247-la-route-du-soleil" target="_blank" class="btn-action-evenement">Rejoindre</a>
                     </div>
 
-                    <!-- Nouveau convoi J.B.C intégré ici -->
+                    <!-- Ajout Convoi Kilomax Juillet -->
                     <div class="convoi-row">
                         <div class="convoi-details">
-                            <p class="event-desc">🚛 Convoi J.B.C</p>
+                            <p class="event-desc">🚛 Convoi Kilomax</p>
+                            <span class="event-time-badge">18 / 07 / 2026 • Rdv 20h | Départ 21h (UTC+2)</span>
+                        </div>
+                        <a href="https://truckersmp.com/events/35908-kilomax-logistique-convoi-juillet" target="_blank" class="btn-action-evenement">Rejoindre</a>
+                    </div>
+
+                    <div class="convoi-row">
+                        <div class="convoi-details">
+                            <p class="event-desc">Campagne 🚛 Convoi J.B.C</p>
                             <span class="event-time-badge">25 / 07 / 2026 • Rdv 20h | Départ 21h (UTC+2)</span>
                         </div>
                         <a href="https://truckersmp.com/events/36400-1er-convoi-de-la-j.b.c-crome" target="_blank" class="btn-action-evenement">Rejoindre</a>
@@ -433,6 +406,7 @@
             </div>
         </div>
 
+        <!-- Août 2026 -->
         <div class="timeline-item active">
             <div class="mois-card">
                 <div class="mois-info-header">
@@ -468,7 +442,7 @@
             </div>
         </div>
 
-        <!-- Reste du contenu inchangé (Septembre à Décembre) ... -->
+        <!-- Septembre 2026 -->
         <div class="timeline-item active">
             <div class="mois-card">
                 <div class="mois-info-header">
@@ -504,6 +478,7 @@
             </div>
         </div>
 
+        <!-- Octobre 2026 -->
         <div class="timeline-item active">
             <div class="mois-card">
                 <div class="mois-info-header">
@@ -531,6 +506,7 @@
             </div>
         </div>
 
+        <!-- Novembre 2026 -->
         <div class="timeline-item active">
             <div class="mois-card">
                 <div class="mois-info-header">
@@ -546,10 +522,20 @@
                         </div>
                         <a href="https://truckersmp.com/events/35968" target="_blank" class="btn-action-evenement">Rejoindre</a>
                     </div>
+
+                    <!-- Ajout Convoi Kilomax Novembre -->
+                    <div class="convoi-row">
+                        <div class="convoi-details">
+                            <p class="event-desc">🚛 Convoi Kilomax</p>
+                            <span class="event-time-badge">28 / 11 / 2026 • Rdv 20h | Départ 21h (UTC+2)</span>
+                        </div>
+                        <a href="https://truckersmp.com/events/36048-%F0%9F%8D%82-kilomax-officiel%E2%80%93-convoi-inter-team-novembre" target="_blank" class="btn-action-evenement">Rejoindre</a>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <!-- Décembre 2026 -->
         <div class="timeline-item active">
             <div class="mois-card">
                 <div class="mois-info-header">
