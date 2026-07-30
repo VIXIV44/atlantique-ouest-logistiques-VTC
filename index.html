@@ -156,6 +156,52 @@
             border-color: var(--aol-vibrant-cyan); box-shadow: 0 0 40px rgba(0, 242, 255, 0.4);
         }
 
+        /* NOUVELLE SECTION SURPRISE / DÉVELOPPEMENT */
+        .teaser-section {
+            margin-top: 40px;
+            padding: 25px 35px;
+            background: var(--aol-card-bg);
+            border: 1px dashed rgba(0, 242, 255, 0.3);
+            border-radius: 12px;
+            max-width: 550px;
+            backdrop-filter: blur(10px);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .teaser-section p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #fff;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .teaser-section p span {
+            color: var(--aol-vibrant-cyan);
+            font-weight: 700;
+        }
+
+        .btn-disabled {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.05);
+            color: #6b7280;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 14px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
         /* SECTION GALERIE */
         .galerie-section { padding: 60px 6% 100px 6%; max-width: 1200px; margin: 0 auto; box-sizing: border-box; }
         .galerie-section h2 { font-family: 'Syne', sans-serif; font-size: 2.2rem; text-transform: uppercase; text-align: center; margin-bottom: 40px; letter-spacing: 1px; color: #fff; }
@@ -180,7 +226,34 @@
         .galerie-card:hover .btn-galerie { background: var(--aol-vibrant-cyan); color: #030712; border-color: var(--aol-vibrant-cyan); box-shadow: 0 0 15px var(--aol-glow-cyan); }
 
         /* FOOTER */
-        footer { text-align: center; padding: 35px; font-size: 0.75rem; font-weight: 500; border-top: 1px solid rgba(255, 255, 255, 0.04); color: #4b5563; letter-spacing: 1px; text-transform: uppercase; }
+        footer { 
+            text-align: center; 
+            padding: 35px; 
+            font-size: 0.75rem; 
+            font-weight: 500; 
+            border-top: 1px solid rgba(255, 255, 255, 0.04); 
+            color: #4b5563; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+        }
+
+        .footer-links {
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--aol-text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--aol-vibrant-cyan);
+            text-shadow: 0 0 8px var(--aol-glow-cyan);
+        }
         
         @media (max-width: 900px) { .galerie-grid { grid-template-columns: 1fr; gap: 20px; } }
         @media (max-width: 768px) {
@@ -190,6 +263,7 @@
             .hero-interactive-row { flex-direction: column; gap: 15px; }
             .logo-central { width: 200px; order: -1; }
             .btn-secondaire { width: 100%; max-width: 250px; }
+            .teaser-section { width: 90%; padding: 20px; }
         }
     </style>
 </head>
@@ -216,7 +290,14 @@
 
     <h1>ATLANTIQUE <span>OUEST</span> LOGISTIQUES</h1>
     <p>Bienvenue sur le portail officiel de notre entreprise de transport sur ETS2. Rejoignez une équipe passionnée combinant réalisme, partage et passion de la route.</p>
+    
     <a href="https://discord.gg/dktKT2HBXR" target="_blank" class="btn-rejoindre">REJOIGNEZ LE DISCORD</a>
+
+    <!-- Nouvelle section surprise / développement -->
+    <div class="teaser-section">
+        <p>Une surprise se prépare, <span>des choses sont en développement...</span></p>
+        <span class="btn-disabled">Téléchargement bientôt disponible</span>
+    </div>
 </section>
 
 <section class="galerie-section">
@@ -244,7 +325,14 @@
     </div>
 </section>
 
-<footer>ATLANTIQUE OUEST LOGISTIQUES © 2026 - Tous droits réservés.</footer>
+<footer>
+    <div class="footer-links">
+        <a href="conditions-utilisation.html">Conditions d'utilisation</a>
+        <span style="color: #4b5563;">•</span>
+        <a href="politique-confidentialite.html">Politique de confidentialité</a>
+    </div>
+    ATLANTIQUE OUEST LOGISTIQUES © 2026 - Tous droits réservés.
+</footer>
 
 </body>
 </html>
