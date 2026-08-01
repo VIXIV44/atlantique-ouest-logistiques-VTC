@@ -58,7 +58,7 @@
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); 
         }
 
-        .nav-menu { display: flex; gap: 28px; }
+        .nav-menu { display: flex; gap: 28px; align-items: center; }
         
         .nav-link { 
             color: var(--aol-text-muted); text-decoration: none; font-size: 0.8rem; font-weight: 700; 
@@ -80,7 +80,6 @@
             align-items: center; text-align: center; padding: 140px 20px 40px 20px; box-sizing: border-box;
         }
 
-        /* BLOC INTERACTIF LOGO + BOUTONS */
         .hero-interactive-row {
             display: flex;
             align-items: center;
@@ -156,7 +155,7 @@
             border-color: var(--aol-vibrant-cyan); box-shadow: 0 0 40px rgba(0, 242, 255, 0.4);
         }
 
-        /* NOUVELLE SECTION SURPRISE / DÉVELOPPEMENT */
+        /* SECTION TEASER LAUNCHER */
         .teaser-section {
             margin-top: 40px;
             padding: 25px 35px;
@@ -186,20 +185,122 @@
             font-weight: 700;
         }
 
-        .btn-disabled {
+        .btn-telecharger {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.05);
-            color: #6b7280;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: var(--aol-vibrant-cyan);
+            color: #030712;
+            border: none;
             padding: 14px 30px;
             border-radius: 8px;
-            text-decoration: none;
             font-weight: 700;
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            cursor: not-allowed;
-            pointer-events: none;
+            cursor: pointer;
+            box-shadow: 0 0 20px var(--aol-glow-cyan);
+            transition: all 0.3s ease;
+        }
+
+        .btn-telecharger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.4);
+        }
+
+        /* SECTION RECRUTEMENT */
+        .recrutement-section {
+            padding: 60px 6%;
+            max-width: 900px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .recrutement-section h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .recrutement-desc {
+            color: var(--aol-text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 35px;
+        }
+
+        .recrutement-card {
+            background: var(--aol-card-bg);
+            border: 1px solid var(--aol-card-border);
+            border-radius: 12px;
+            padding: 35px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: left;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #fff;
+        }
+
+        .form-group input {
+            background: rgba(6, 9, 19, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 12px 15px;
+            color: #fff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--aol-vibrant-cyan);
+            box-shadow: 0 0 10px var(--aol-glow-cyan);
+        }
+
+        .btn-candidater {
+            display: block;
+            width: 100%;
+            background: var(--aol-vibrant-cyan);
+            color: #030712;
+            border: none;
+            padding: 15px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 0 20px var(--aol-glow-cyan);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn-candidater:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.4);
+            background: #fff;
+            color: #030712;
         }
 
         /* SECTION GALERIE */
@@ -264,6 +365,7 @@
             .logo-central { width: 200px; order: -1; }
             .btn-secondaire { width: 100%; max-width: 250px; }
             .teaser-section { width: 90%; padding: 20px; }
+            .form-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -272,6 +374,7 @@
 <header>
     <a href="#" class="nav-brand">Site Web officiel de l'AOL</a>
     <nav class="nav-menu">
+        <a href="#recrutement" class="nav-link" style="color: var(--aol-vibrant-cyan);">Recrutement</a>
         <a href="https://www.facebook.com/profile.php?id=61572367872004&locale=fr_FR" target="_blank" class="nav-link">Facebook</a>
         <a href="https://trucksbook.eu/company/223011" target="_blank" class="nav-link">TrucksBook</a>
         <a href="https://hub.truckyapp.com/company/44774" target="_blank" class="nav-link">Trucky</a>
@@ -293,10 +396,54 @@
     
     <a href="https://discord.gg/dktKT2HBXR" target="_blank" class="btn-rejoindre">REJOIGNEZ LE DISCORD</a>
 
-    <!-- Nouvelle section surprise / développement -->
+    <!-- Section Bouton Télécharger -->
     <div class="teaser-section">
-        <p>Une surprise se prépare, <span>des choses sont en développement...</span></p>
-        <span class="btn-disabled">Téléchargement bientôt disponible</span>
+        <p>Téléchargement du <span>Launcher AOL</span></p>
+        <button onclick="demanderMotDePasse()" class="btn-telecharger">Télécharger</button>
+    </div>
+</section>
+
+<!-- SECTION RECRUTEMENT -->
+<section id="recrutement" class="recrutement-section">
+    <h2>Nous Rejoindre</h2>
+    <p class="recrutement-desc">Prêt à prendre la route avec Atlantique Ouest Logistiques ? Remplissez ce pré-formulaire rapide pour préparer votre arrivée dans notre VTC.</p>
+    
+    <div class="recrutement-card">
+        <!-- Formulaire configuré avec les deux clés Web3Forms -->
+        <form id="formRecrutement" onsubmit="envoyerCandidature(event)">
+            
+            <!-- Clé principale (1ère adresse mail) -->
+            <input type="hidden" name="apikey" value="35ee25ad-776c-4e1c-8ed7-73818c41795b">
+            
+            <!-- Clé secondaire en copie (2ème adresse mail) -->
+            <input type="hidden" name="cc" value="47a1e10f-a980-430c-b89c-5bed4425af38">
+            
+            <input type="hidden" name="subject" value="Nouvelle candidature reçue sur le site AOL !">
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="pseudo">Votre Pseudo / Prénom :</label>
+                    <input type="text" id="pseudo" name="Pseudo" required placeholder="Ex: RoadMaster44">
+                </div>
+                
+                <div class="form-group">
+                    <label for="age">Votre Âge :</label>
+                    <input type="number" id="age" name="Age" required min="14" placeholder="Ex: 18">
+                </div>
+
+                <div class="form-group">
+                    <label for="experience">Heures sur ETS2 :</label>
+                    <input type="text" id="experience" name="Experience" required placeholder="Ex: 500 heures">
+                </div>
+
+                <div class="form-group">
+                    <label for="motivation">Pourquoi l'AOL ?</label>
+                    <input type="text" id="motivation" name="Motivation" required placeholder="Ex: Pour le réalisme et l'ambiance">
+                </div>
+            </div>
+
+            <button type="submit" id="btnSubmit" class="btn-candidater">Valider et continuer sur Discord</button>
+        </form>
     </div>
 </section>
 
@@ -333,6 +480,62 @@
     </div>
     ATLANTIQUE OUEST LOGISTIQUES © 2026 - Tous droits réservés.
 </footer>
+
+<script>
+function demanderMotDePasse() {
+    const bonMotDePasse = "447788";
+    const saisie = prompt("Veuillez entrer le mot de passe pour télécharger le launcher :");
+
+    if (saisie === null) {
+        return; 
+    }
+
+    if (saisie === bonMotDePasse) {
+        alert("Mot de passe correct ! Le téléchargement va commencer.");
+        
+        const lien = document.createElement('a');
+        lien.href = 'launcher.zip'; 
+        lien.download = 'launcher.zip';
+        document.body.appendChild(lien);
+        lien.click();
+        document.body.removeChild(lien);
+    } else {
+        alert("Mot de passe incorrect ! Accès refusé.");
+    }
+}
+
+function envoyerCandidature(event) {
+    event.preventDefault(); 
+
+    const form = document.getElementById('formRecrutement');
+    const btn = document.getElementById('btnSubmit');
+    const formData = new FormData(form);
+
+    btn.disabled = true;
+    btn.innerText = "Envoi en cours...";
+
+    fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Candidature envoyée avec succès ! Vous allez être redirigé vers le Discord de l'AOL.");
+            window.location.href = "https://discord.gg/dktKT2HBXR";
+        } else {
+            alert("Une erreur est survenue lors de l'envoi. Veuillez réessayer.");
+            btn.disabled = false;
+            btn.innerText = "Valider et continuer sur Discord";
+        }
+    })
+    .catch(error => {
+        alert("Erreur réseau. Vérifiez votre connexion.");
+        btn.disabled = false;
+        btn.innerText = "Valider et continuer sur Discord";
+    });
+}
+</script>
 
 </body>
 </html>
