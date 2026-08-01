@@ -187,23 +187,19 @@
 
         .btn-telecharger {
             display: inline-block;
-            background: var(--aol-vibrant-cyan);
-            color: #030712;
-            border: none;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--aol-text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 14px 30px;
             border-radius: 8px;
             font-weight: 700;
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            cursor: pointer;
-            box-shadow: 0 0 20px var(--aol-glow-cyan);
+            cursor: not-allowed;
+            opacity: 0.6;
+            box-shadow: none;
             transition: all 0.3s ease;
-        }
-
-        .btn-telecharger:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(0, 242, 255, 0.4);
         }
 
         /* SECTION RECRUTEMENT */
@@ -398,8 +394,8 @@
 
     <!-- Section Bouton Télécharger -->
     <div class="teaser-section">
-        <p>Téléchargement du <span>Launcher AOL</span></p>
-        <button onclick="demanderMotDePasse()" class="btn-telecharger">Télécharger</button>
+        <p>Des surprises sont en préparation, cela sera bientôt disponible !</p>
+        <button class="btn-telecharger" disabled>Télécharger</button>
     </div>
 </section>
 
@@ -482,28 +478,6 @@
 </footer>
 
 <script>
-function demanderMotDePasse() {
-    const bonMotDePasse = "447788";
-    const saisie = prompt("Veuillez entrer le mot de passe pour télécharger le launcher :");
-
-    if (saisie === null) {
-        return; 
-    }
-
-    if (saisie === bonMotDePasse) {
-        alert("Mot de passe correct ! Le téléchargement va commencer.");
-        
-        const lien = document.createElement('a');
-        lien.href = 'launcher.zip'; 
-        lien.download = 'launcher.zip';
-        document.body.appendChild(lien);
-        lien.click();
-        document.body.removeChild(lien);
-    } else {
-        alert("Mot de passe incorrect ! Accès refusé.");
-    }
-}
-
 function envoyerCandidature(event) {
     event.preventDefault(); 
 
