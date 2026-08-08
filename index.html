@@ -187,19 +187,23 @@
 
         .btn-telecharger {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.08);
-            color: var(--aol-text-muted);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--aol-vibrant-cyan);
+            color: #030712;
+            border: none;
             padding: 14px 30px;
             border-radius: 8px;
             font-weight: 700;
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            cursor: not-allowed;
-            opacity: 0.6;
-            box-shadow: none;
+            cursor: pointer;
+            box-shadow: 0 0 20px var(--aol-glow-cyan);
             transition: all 0.3s ease;
+        }
+
+        .btn-telecharger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.4);
         }
 
         /* SECTION RECRUTEMENT */
@@ -392,10 +396,10 @@
     
     <a href="https://discord.gg/dktKT2HBXR" target="_blank" class="btn-rejoindre">REJOIGNEZ LE DISCORD</a>
 
-    <!-- Section Bouton Télécharger -->
+    <!-- SECTION TEASER LAUNCHER -->
     <div class="teaser-section">
-        <p>Des surprises sont en préparation, cela sera bientôt disponible !</p>
-        <button class="btn-telecharger" disabled>Télécharger</button>
+        <p>Téléchargement du <span id="versionText">Launcher AOL</span></p>
+        <button onclick="demanderMotDePasse()" class="btn-telecharger">Télécharger</button>
     </div>
 </section>
 
@@ -405,15 +409,9 @@
     <p class="recrutement-desc">Prêt à prendre la route avec Atlantique Ouest Logistiques ? Remplissez ce pré-formulaire rapide pour préparer votre arrivée dans notre VTC.</p>
     
     <div class="recrutement-card">
-        <!-- Formulaire configuré avec les deux clés Web3Forms -->
         <form id="formRecrutement" onsubmit="envoyerCandidature(event)">
-            
-            <!-- Clé principale (1ère adresse mail) -->
             <input type="hidden" name="apikey" value="35ee25ad-776c-4e1c-8ed7-73818c41795b">
-            
-            <!-- Clé secondaire en copie (2ème adresse mail) -->
             <input type="hidden" name="cc" value="47a1e10f-a980-430c-b89c-5bed4425af38">
-            
             <input type="hidden" name="subject" value="Nouvelle candidature reçue sur le site AOL !">
 
             <div class="form-grid">
@@ -446,7 +444,6 @@
 <section class="galerie-section">
     <h2>Galerie Photos</h2>
     <div class="galerie-grid">
-        
         <div class="galerie-card">
             <h3>Convois Officiels</h3>
             <p>Découvrez les clichés de nos grands événements d'entreprise officiels organisés par l'AOL.</p>
@@ -464,7 +461,6 @@
             <p>Les moments forts partagés sur la route lors de nos événements inter-entreprises avec nos partenaires.</p>
             <a href="convois-partenaires.html" class="btn-galerie">Voir l'album</a>
         </div>
-
     </div>
 </section>
 
@@ -478,6 +474,61 @@
 </footer>
 
 <script>
+// Au chargement de la page, met à jour le texte du titre avec le nom de la version actuelle
+document.addEventListener("DOMContentLoaded", async () => {
+    try {
+        const response = await fetch("https://api.github.com/repos/VIXIV44/aol-launcher-config/releases/latest");
+        if (response.ok) {
+            const data = await response.json();
+            if (data.tag_name) {
+                document.getElementById("versionText").innerText = `Launcher AOL ${data.tag_name}`;
+            }
+        }
+    } catch (e) {
+        // En cas d'erreur de réseau, conserve le texte par défaut
+    }
+});
+
+async function demanderMotDePasse() {
+    const bonMotDePasse = "447788";
+    const saisie = prompt("Veuillez entrer le mot de passe pour télécharger le launcher :");
+
+    if (saisie === null) {
+        return; 
+    }
+
+    if (saisie === bonMotDePasse) {
+        alert("Mot de passe correct ! Recherche de la dernière version du launcher...");
+
+        // Lien de secours direct vers la v1.1.2 si jamais le fetch API GitHub échoue
+        const fallbackLink = "https://github.com/VIXIV44/aol-launcher-config/releases/download/v1.1.2/AOLLauncher-v1.1.2.zip";
+
+        try {
+            // Récupère dynamiquement la dernière release marquée comme "Latest"
+            const response = await fetch("https://api.github.com/repos/VIXIV44/aol-launcher-config/releases/latest");
+            
+            if (!response.ok) {
+                throw new Error("Erreur réseau API GitHub");
+            }
+
+            const data = await response.json();
+
+            // Si un fichier .zip ou .exe est bien attaché dans la release
+            if (data.assets && data.assets.length > 0) {
+                const urlDerniereVersion = data.assets[0].browser_download_url;
+                window.location.href = urlDerniereVersion;
+            } else {
+                window.location.href = fallbackLink;
+            }
+        } catch (error) {
+            console.error("Erreur API GitHub, redirection vers le lien direct :", error);
+            window.location.href = fallbackLink;
+        }
+    } else {
+        alert("Mot de passe incorrect ! Accès refusé.");
+    }
+}
+
 function envoyerCandidature(event) {
     event.preventDefault(); 
 
