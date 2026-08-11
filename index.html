@@ -230,6 +230,62 @@
             margin-bottom: 35px;
         }
 
+        /* CARTE DES CONDITIONS DE RECRUTEMENT */
+        .conditions-card {
+            background: var(--aol-card-bg);
+            border: 1px solid var(--aol-card-border);
+            border-radius: 12px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .conditions-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            color: var(--aol-vibrant-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 0 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .conditions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 15px;
+        }
+
+        .condition-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(6, 9, 19, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 14px 18px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .condition-item:hover {
+            border-color: rgba(0, 242, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 242, 255, 0.1);
+        }
+
+        .condition-icon {
+            color: var(--aol-vibrant-cyan);
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
         .recrutement-card {
             background: var(--aol-card-bg);
             border: 1px solid var(--aol-card-border);
@@ -366,6 +422,7 @@
             .btn-secondaire { width: 100%; max-width: 250px; }
             .teaser-section { width: 90%; padding: 20px; }
             .form-grid { grid-template-columns: 1fr; }
+            .conditions-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -406,8 +463,40 @@
 <!-- SECTION RECRUTEMENT -->
 <section id="recrutement" class="recrutement-section">
     <h2>Nous Rejoindre</h2>
-    <p class="recrutement-desc">Prêt à prendre la route avec Atlantique Ouest Logistiques ? Remplissez ce pré-formulaire rapide pour préparer votre arrivée dans notre VTC.</p>
+    <p class="recrutement-desc">Prêt à prendre la route avec Atlantique Ouest Logistiques ? Vérifiez nos conditions de recrutement puis remplissez ce pré-formulaire rapide.</p>
     
+    <!-- CARTE DES CONDITIONS DE RECRUTEMENT -->
+    <div class="conditions-card">
+        <h3>📋 Conditions de Recrutement</h3>
+        <div class="conditions-grid">
+            <div class="condition-item">
+                <span class="condition-icon">✦</span>
+                <span>Avoir <strong>16 ans minimum</strong></span>
+            </div>
+            <div class="condition-item">
+                <span class="condition-icon">✦</span>
+                <span>La <strong>maturité</strong> et le <strong>respect</strong> sont primordiaux chez AOL</span>
+            </div>
+            <div class="condition-item">
+                <span class="condition-icon">✦</span>
+                <span><strong>Aucun kilométrage</strong> minimum requis (roulez à votre rythme)</span>
+            </div>
+            <div class="condition-item">
+                <span class="condition-icon">✦</span>
+                <span>Nouveaux conducteurs <strong>acceptés et bienvenus</strong></span>
+            </div>
+            <div class="condition-item">
+                <span class="condition-icon">✦</span>
+                <span><strong>Respect et bonne ambiance</strong> obligatoires</span>
+            </div>
+            <div class="condition-item">
+                <span class="condition-icon">✦</span>
+                <span>Respecter une <strong>conduite réelle et propre</strong> lors des convois</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FORMULAIRE -->
     <div class="recrutement-card">
         <form id="formRecrutement" onsubmit="envoyerCandidature(event)">
             <input type="hidden" name="apikey" value="35ee25ad-776c-4e1c-8ed7-73818c41795b">
