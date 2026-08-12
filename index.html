@@ -206,7 +206,7 @@
             box-shadow: 0 0 30px rgba(0, 242, 255, 0.4);
         }
 
-        /* SECTION RECRUTEMENT */
+        /* SECTION DEMANDES & TABS */
         .recrutement-section {
             padding: 60px 6%;
             max-width: 900px;
@@ -228,6 +228,49 @@
             color: var(--aol-text-muted);
             font-size: 0.95rem;
             margin-bottom: 35px;
+        }
+
+        /* TABS SYSTEM STYLES */
+        .demandes-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: rgba(15, 23, 42, 0.6);
+            color: var(--aol-text-muted);
+            border: 1px solid var(--aol-card-border);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            color: #fff;
+            border-color: var(--aol-vibrant-cyan);
+        }
+
+        .tab-btn.active {
+            background: var(--aol-vibrant-cyan);
+            color: #030712;
+            border-color: var(--aol-vibrant-cyan);
+            box-shadow: 0 0 20px var(--aol-glow-cyan);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
         }
 
         /* CARTE DES CONDITIONS DE RECRUTEMENT */
@@ -309,6 +352,10 @@
             gap: 8px;
         }
 
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
         .form-group label {
             font-size: 0.85rem;
             font-weight: 700;
@@ -317,7 +364,7 @@
             color: #fff;
         }
 
-        .form-group input {
+        .form-group input, .form-group select, .form-group textarea {
             background: rgba(6, 9, 19, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 6px;
@@ -326,12 +373,19 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 0.9rem;
             transition: all 0.3s ease;
+            box-sizing: border-box;
+            width: 100%;
         }
 
-        .form-group input:focus {
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
             outline: none;
             border-color: var(--aol-vibrant-cyan);
             box-shadow: 0 0 10px var(--aol-glow-cyan);
+        }
+
+        .form-group select option {
+            background: #060913;
+            color: #fff;
         }
 
         .btn-candidater {
@@ -431,7 +485,7 @@
 <header>
     <a href="#" class="nav-brand">Site Web officiel de l'AOL</a>
     <nav class="nav-menu">
-        <a href="#recrutement" class="nav-link" style="color: var(--aol-vibrant-cyan);">Recrutement</a>
+        <a href="#demandes" class="nav-link" style="color: var(--aol-vibrant-cyan);">Demandes</a>
         <a href="https://www.facebook.com/profile.php?id=61572367872004&locale=fr_FR" target="_blank" class="nav-link">Facebook</a>
         <a href="https://trucksbook.eu/company/223011" target="_blank" class="nav-link">TrucksBook</a>
         <a href="https://hub.truckyapp.com/company/44774" target="_blank" class="nav-link">Trucky</a>
@@ -453,80 +507,180 @@
     
     <a href="https://discord.gg/dktKT2HBXR" target="_blank" class="btn-rejoindre">REJOIGNEZ LE DISCORD</a>
 
-    <!-- SECTION TEASER LAUNCHER -->
     <div class="teaser-section">
         <p>Téléchargement du <span id="versionText">Launcher AOL</span></p>
         <button onclick="demanderMotDePasse()" class="btn-telecharger">Télécharger</button>
     </div>
 </section>
 
-<!-- SECTION RECRUTEMENT -->
-<section id="recrutement" class="recrutement-section">
-    <h2>Nous Rejoindre</h2>
-    <p class="recrutement-desc">Prêt à prendre la route avec Atlantique Ouest Logistiques ? Vérifiez nos conditions de recrutement puis remplissez ce pré-formulaire rapide.</p>
+<section id="demandes" class="recrutement-section">
+    <h2>Demandes</h2>
+    <p class="recrutement-desc">Choisissez simplement le type de demande que vous souhaitez envoyer à Atlantique Ouest Logistiques.</p>
     
-    <!-- CARTE DES CONDITIONS DE RECRUTEMENT -->
-    <div class="conditions-card">
-        <h3>📋 Conditions de Recrutement</h3>
-        <div class="conditions-grid">
-            <div class="condition-item">
-                <span class="condition-icon">✦</span>
-                <span>Avoir <strong>16 ans minimum</strong></span>
+    <div class="demandes-tabs">
+        <button type="button" id="tab-btn-recrutement" class="tab-btn active" onclick="switchTab('recrutement')">Recrutement</button>
+        <button type="button" id="tab-btn-convoi" class="tab-btn" onclick="switchTab('convoi')">Invitation Convoi</button>
+        <button type="button" id="tab-btn-partenariat" class="tab-btn" onclick="switchTab('partenariat')">Demande de Partenariat</button>
+    </div>
+
+    <div id="tab-recrutement" class="tab-content active">
+        <div class="conditions-card">
+            <h3>📋 Conditions de Recrutement</h3>
+            <div class="conditions-grid">
+                <div class="condition-item">
+                    <span class="condition-icon">✦</span>
+                    <span>Avoir <strong>16 ans minimum</strong></span>
+                </div>
+                <div class="condition-item">
+                    <span class="condition-icon">✦</span>
+                    <span>La <strong>maturité</strong> et le <strong>respect</strong> sont primordiaux chez AOL</span>
+                </div>
+                <div class="condition-item">
+                    <span class="condition-icon">✦</span>
+                    <span><strong>Aucun kilométrage</strong> minimum requis (roulez à votre rythme)</span>
+                </div>
+                <div class="condition-item">
+                    <span class="condition-icon">✦</span>
+                    <span>Nouveaux conducteurs <strong>acceptés et bienvenus</strong></span>
+                </div>
+                <div class="condition-item">
+                    <span class="condition-icon">✦</span>
+                    <span><strong>Respect et bonne ambiance</strong> obligatoires</span>
+                </div>
+                <div class="condition-item">
+                    <span class="condition-icon">✦</span>
+                    <span>Respecter une <strong>conduite réelle et propre</strong> lors des convois</span>
+                </div>
             </div>
-            <div class="condition-item">
-                <span class="condition-icon">✦</span>
-                <span>La <strong>maturité</strong> et le <strong>respect</strong> sont primordiaux chez AOL</span>
-            </div>
-            <div class="condition-item">
-                <span class="condition-icon">✦</span>
-                <span><strong>Aucun kilométrage</strong> minimum requis (roulez à votre rythme)</span>
-            </div>
-            <div class="condition-item">
-                <span class="condition-icon">✦</span>
-                <span>Nouveaux conducteurs <strong>acceptés et bienvenus</strong></span>
-            </div>
-            <div class="condition-item">
-                <span class="condition-icon">✦</span>
-                <span><strong>Respect et bonne ambiance</strong> obligatoires</span>
-            </div>
-            <div class="condition-item">
-                <span class="condition-icon">✦</span>
-                <span>Respecter une <strong>conduite réelle et propre</strong> lors des convois</span>
-            </div>
+        </div>
+
+        <div class="recrutement-card">
+            <h3 style="font-family: 'Syne', sans-serif; font-size: 1.3rem; color: #fff; text-transform: uppercase; margin: 0 0 10px 0; text-align: center;">Rejoindre Atlantique Ouest Logistiques</h3>
+            <p style="color: var(--aol-text-muted); font-size: 0.9rem; text-align: center; margin-bottom: 25px; line-height: 1.5;">Bonjour à toi ! Merci de l'intérêt que tu portes à notre entreprise. Je te laisse remplir le formulaire juste en dessous et nous te répondrons le plus rapidement possible.</p>
+            
+            <form onsubmit="envoyerFormulaire(event, 'recrutement')">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="pseudo_age">Pseudo & Âge</label>
+                        <input type="text" id="pseudo_age" required placeholder="Ex : RoadMaster44, 18 ans">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="heures_jeu">Heures de jeu (ETS2)</label>
+                        <input type="text" id="heures_jeu" required placeholder="Ex : 850 heures">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dlc_maps">DLC Maps</label>
+                        <select id="dlc_maps" required>
+                            <option value="" disabled selected>Sélectionner</option>
+                            <option value="Tous">Tous</option>
+                            <option value="Certains">Certains</option>
+                            <option value="Aucun">Aucun</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="trucksbook_trucky">TrucksBook / Trucky</label>
+                        <select id="trucksbook_trucky" required>
+                            <option value="" disabled selected>Sélectionner</option>
+                            <option value="Oui, TrucksBook">Oui, TrucksBook</option>
+                            <option value="Oui, Trucky">Oui, Trucky</option>
+                            <option value="Oui, les deux">Oui, les deux</option>
+                            <option value="Non">Non</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="disponibilites">Disponibilités</label>
+                        <select id="disponibilites" required>
+                            <option value="" disabled selected>Sélectionner</option>
+                            <option value="Semaine">Semaine</option>
+                            <option value="Week-end">Week-end</option>
+                            <option value="Les deux">Les deux</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="motivation">Motivation en une sentence</label>
+                        <input type="text" id="motivation" required placeholder="Ex : Je souhaite rejoindre AOL pour partager ma passion du transport.">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-candidater">Envoyer ma candidature</button>
+            </form>
         </div>
     </div>
 
-    <!-- FORMULAIRE -->
-    <div class="recrutement-card">
-        <form id="formRecrutement" onsubmit="envoyerCandidature(event)">
-            <input type="hidden" name="apikey" value="35ee25ad-776c-4e1c-8ed7-73818c41795b">
-            <input type="hidden" name="cc" value="47a1e10f-a980-430c-b89c-5bed4425af38">
-            <input type="hidden" name="subject" value="Nouvelle candidature reçue sur le site AOL !">
+    <div id="tab-convoi" class="tab-content">
+        <div class="recrutement-card">
+            <h3 style="font-family: 'Syne', sans-serif; font-size: 1.3rem; color: #fff; text-transform: uppercase; margin: 0 0 10px 0; text-align: center;">Invitation à un Convoi</h3>
+            <p style="color: var(--aol-text-muted); font-size: 0.9rem; text-align: center; margin-bottom: 25px; line-height: 1.5;">Vous souhaitez inviter Atlantique Ouest Logistiques à votre convoi ? Remplissez simplement les informations ci-dessous.</p>
 
-            <div class="form-grid">
-                <div class="form-group">
-                    <label for="pseudo">Votre Pseudo / Prénom :</label>
-                    <input type="text" id="pseudo" name="Pseudo" required placeholder="Ex: RoadMaster44">
-                </div>
-                
-                <div class="form-group">
-                    <label for="age">Votre Âge :</label>
-                    <input type="number" id="age" name="Age" required min="14" placeholder="Ex: 18">
+            <form onsubmit="envoyerFormulaire(event, 'convoi')">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nom_entreprise">Nom de l'entreprise</label>
+                        <input type="text" id="nom_entreprise" required placeholder="Ex: VTC Transport">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date_convoi">Date du convoi</label>
+                        <input type="date" id="date_convoi" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="heure_rdv">Heure de rendez-vous</label>
+                        <input type="time" id="heure_rdv" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="heure_depart">Heure de départ</label>
+                        <input type="time" id="heure_depart" required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="lien_evenement">Lien TruckersMP / Événement</label>
+                        <input type="url" id="lien_evenement" required placeholder="https://truckersmp.com/events/...">
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="experience">Heures sur ETS2 :</label>
-                    <input type="text" id="experience" name="Experience" required placeholder="Ex: 500 heures">
+                <button type="submit" class="btn-candidater">Envoyer l'invitation</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="tab-partenariat" class="tab-content">
+        <div class="recrutement-card">
+            <h3 style="font-family: 'Syne', sans-serif; font-size: 1.3rem; color: #fff; text-transform: uppercase; margin: 0 0 10px 0; text-align: center;">Proposer un Partenariat</h3>
+            <p style="color: var(--aol-text-muted); font-size: 0.9rem; text-align: center; margin-bottom: 25px; line-height: 1.5;">Vous représentez une entreprise virtuelle ou une communauté et souhaitez devenir partenaire d'AOL ? Remplissez ce formulaire.</p>
+
+            <form onsubmit="envoyerFormulaire(event, 'partenariat')">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="partenaire_nom">Nom de votre entreprise / entité</label>
+                        <input type="text" id="partenaire_nom" required placeholder="Ex : Transports Express VTC">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="partenaire_responsable">Nom / Pseudo du responsable</label>
+                        <input type="text" id="partenaire_responsable" required placeholder="Ex : Alex (Fondateur)">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="partenaire_lien">Lien Discord / Site Web</label>
+                        <input type="text" id="partenaire_lien" required placeholder="https://discord.gg/...">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="partenaire_desc">Description du projet de partenariat</label>
+                        <textarea id="partenaire_desc" rows="3" required placeholder="Ex : présentez brièvement votre structure et vos attentes..."></textarea>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="motivation">Pourquoi l'AOL ?</label>
-                    <input type="text" id="motivation" name="Motivation" required placeholder="Ex: Pour le réalisme et l'ambiance">
-                </div>
-            </div>
-
-            <button type="submit" id="btnSubmit" class="btn-candidater">Valider et continuer sur Discord</button>
-        </form>
+                <button type="submit" class="btn-candidater">Envoyer la demande</button>
+            </form>
+        </div>
     </div>
 </section>
 
@@ -578,6 +732,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 });
 
+// Gestion du changement d'onglet
+function switchTab(tabId) {
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+    
+    document.getElementById('tab-btn-' + tabId).classList.add('active');
+    document.getElementById('tab-' + tabId).classList.add('active');
+}
+
 async function demanderMotDePasse() {
     const bonMotDePasse = "447788";
     const saisie = prompt("Veuillez entrer le mot de passe pour télécharger le launcher :");
@@ -589,11 +752,9 @@ async function demanderMotDePasse() {
     if (saisie === bonMotDePasse) {
         alert("Mot de passe correct ! Recherche de la dernière version du launcher...");
 
-        // Lien de secours direct vers la v1.1.2 si jamais le fetch API GitHub échoue
         const fallbackLink = "https://github.com/VIXIV44/aol-launcher-config/releases/download/v1.1.2/AOLLauncher-v1.1.2.zip";
 
         try {
-            // Récupère dynamiquement la dernière release marquée comme "Latest"
             const response = await fetch("https://api.github.com/repos/VIXIV44/aol-launcher-config/releases/latest");
             
             if (!response.ok) {
@@ -602,7 +763,6 @@ async function demanderMotDePasse() {
 
             const data = await response.json();
 
-            // Si un fichier .zip ou .exe est bien attaché dans la release
             if (data.assets && data.assets.length > 0) {
                 const urlDerniereVersion = data.assets[0].browser_download_url;
                 window.location.href = urlDerniereVersion;
@@ -618,36 +778,97 @@ async function demanderMotDePasse() {
     }
 }
 
-function envoyerCandidature(event) {
-    event.preventDefault(); 
+// GESTION ET ENVOI SUR DISCORD VIA WEBHOOKS
+async function envoyerFormulaire(event, type) {
+    event.preventDefault();
 
-    const form = document.getElementById('formRecrutement');
-    const btn = document.getElementById('btnSubmit');
-    const formData = new FormData(form);
+    const form = event.target;
+    const btn = form.querySelector('button[type="submit"]');
+    const originalText = btn.innerText;
 
     btn.disabled = true;
     btn.innerText = "Envoi en cours...";
 
-    fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert("Candidature envoyée avec succès ! Vous allez être redirigé vers le Discord de l'AOL.");
+    // Vos liens Webhook Discord
+    const webhooks = {
+        'recrutement': "https://discord.com/api/webhooks/1536758374681673869/6o4xaIJdR06VMQXQy78blC50ewP9XQjKwkHfmRVC1f_LEhOWWwq-FqnjuyJo6Gkelcbb",
+        'convoi': "https://discord.com/api/webhooks/1536758173120069683/wrtWwZrpIcMgYBuaXY6oPU9MDRgZ9SHWVpkDokdhMfUFda-Dzslso2mAWuSC32Kn58a6",
+        'partenariat': "https://discord.com/api/webhooks/1536757929330479256/VmjsC3wNf-Hf5l_dn10c8426_5bHOPFYuY60qQ4t34M2Tc9jY0hrt8kK0-WQPYrbhUO3"
+    };
+
+    const webhookUrl = webhooks[type];
+
+    let payload = {
+        username: "AOL - Site Web",
+        embeds: []
+    };
+
+    if (type === 'recrutement') {
+        payload.embeds.push({
+            title: "📝 Nouvelle Candidature - Recrutement",
+            color: 62207, // Cyan AOL (#00f2ff)
+            fields: [
+                { name: "👤 Pseudo & Âge", value: document.getElementById('pseudo_age').value || "N/A", inline: true },
+                { name: "⏱️ Heures de jeu (ETS2)", value: document.getElementById('heures_jeu').value || "N/A", inline: true },
+                { name: "🗺️ DLC Maps", value: document.getElementById('dlc_maps').value || "N/A", inline: true },
+                { name: "📊 TrucksBook / Trucky", value: document.getElementById('trucksbook_trucky').value || "N/A", inline: true },
+                { name: "📅 Disponibilités", value: document.getElementById('disponibilites').value || "N/A", inline: true },
+                { name: "💬 Motivation", value: document.getElementById('motivation').value || "N/A", inline: false }
+            ],
+            footer: { text: "Atlantique Ouest Logistiques - Formulaire Web" },
+            timestamp: new Date().toISOString()
+        });
+    } else if (type === 'convoi') {
+        payload.embeds.push({
+            title: "🚛 Nouvelle Invitation - Convoi",
+            color: 62207,
+            fields: [
+                { name: "🏢 Entreprise", value: document.getElementById('nom_entreprise').value || "N/A", inline: true },
+                { name: "📅 Date du Convoi", value: document.getElementById('date_convoi').value || "N/A", inline: true },
+                { name: "⏰ Rendez-vous / Départ", value: `RDV: ${document.getElementById('heure_rdv').value} | Départ: ${document.getElementById('heure_depart').value}`, inline: false },
+                { name: "🔗 Lien Événement", value: document.getElementById('lien_evenement').value || "N/A", inline: false }
+            ],
+            footer: { text: "Atlantique Ouest Logistiques - Formulaire Web" },
+            timestamp: new Date().toISOString()
+        });
+    } else if (type === 'partenariat') {
+        payload.embeds.push({
+            title: "🤝 Nouvelle Demande - Partenariat",
+            color: 62207,
+            fields: [
+                { name: "🏢 Entreprise / Entité", value: document.getElementById('partenaire_nom').value || "N/A", inline: true },
+                { name: "👤 Responsable", value: document.getElementById('partenaire_responsable').value || "N/A", inline: true },
+                { name: "🔗 Lien Discord / Site", value: document.getElementById('partenaire_lien').value || "N/A", inline: false },
+                { name: "📝 Description du Projet", value: document.getElementById('partenaire_desc').value || "N/A", inline: false }
+            ],
+            footer: { text: "Atlantique Ouest Logistiques - Formulaire Web" },
+            timestamp: new Date().toISOString()
+        });
+    }
+
+    try {
+        const response = await fetch(webhookUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+
+        if (response.ok || response.status === 204) {
+            alert("Votre demande a été envoyée directement sur notre Discord avec succès ! Vous allez être redirigé.");
+            form.reset();
             window.location.href = "https://discord.gg/dktKT2HBXR";
         } else {
-            alert("Une erreur est survenue lors de l'envoi. Veuillez réessayer.");
-            btn.disabled = false;
-            btn.innerText = "Valider et continuer sur Discord";
+            alert("Une erreur est survenue lors de l'envoi vers Discord. Veuillez réessayer.");
         }
-    })
-    .catch(error => {
+    } catch (error) {
+        console.error(error);
         alert("Erreur réseau. Vérifiez votre connexion.");
+    } finally {
         btn.disabled = false;
-        btn.innerText = "Valider et continuer sur Discord";
-    });
+        btn.innerText = originalText;
+    }
 }
 </script>
 
