@@ -796,10 +796,14 @@ async function envoyerFormulaire(event, type) {
         'partenariat': "https://discord.com/api/webhooks/1536757929330479256/VmjsC3wNf-Hf5l_dn10c8426_5bHOPFYuY60qQ4t34M2Tc9jY0hrt8kK0-WQPYrbhUO3"
     };
 
+    // Vos 5 Rôles Discord à PING lors d'un envoi
+    const rolesToPing = "<@&1516055108264394883> <@&1516055109950242816> <@&1516052879813771326> <@&1517614862249758943> <@&1516055105689092268>";
+
     const webhookUrl = webhooks[type];
 
     let payload = {
         username: "AOL - Site Web",
+        content: rolesToPing, // Mentionne les 5 rôles Discord
         embeds: []
     };
 
