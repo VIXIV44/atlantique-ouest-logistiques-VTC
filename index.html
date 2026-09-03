@@ -835,6 +835,28 @@ async function envoyerFormulaire(event, type) {
             footer: { text: "Atlantique Ouest Logistiques - Formulaire Web" },
             timestamp: new Date().toISOString()
         });
+
+        // Envoie AUSSI ce convoi vers la base du launcher (Supabase), en plus
+        // de Discord ci-dessous -- pour qu'il apparaisse automatiquement
+        // dans le launcher (bandeau du jour + liste des prochains
+        // évènements) sans avoir à le retaper à la main. Échoue en
+        // silence si ça ne marche pas : Discord reste l'envoi principal,
+        // ça ne doit jamais bloquer le formulaire pour le chauffeur.
+        fetch("https://wraqwxqbxctzjmsjvaqs.supabase.co/rest/v1/evenements_compagnie", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "apikey": "sb_publishable_u_Vu2fa2Tl4jKzznpLXY-w_Iy44SspV",
+                "Prefer": "return=minimal"
+            },
+            body: JSON.stringify({
+                titre: document.getElementById('nom_entreprise').value,
+                date_evenement: document.getElementById('date_convoi').value,
+                heure_rdv: document.getElementById('heure_rdv').value,
+                heure_depart: document.getElementById('heure_depart').value,
+                lien_inscription: document.getElementById('lien_evenement').value
+            })
+        }).catch(err => console.error("Envoi vers le launcher échoué (pas grave, Discord reste prioritaire) :", err));
     } else if (type === 'partenariat') {
         payload.embeds.push({
             title: "🤝 Nouvelle Demande - Partenariat",
